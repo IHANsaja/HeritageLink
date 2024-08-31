@@ -99,7 +99,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
 	
             <div class="login-child52" style="left:880px; top: 400px;">
-            <button type="submit" style="border-radius: 5px;" onclick="window.location.href='seller-dashboard.php'">LOGIN</button></a>
+            <button type="submit" style="border-radius: 5px;" >LOGIN</button></a>
             </div>
             <div class="login-child52" style="left:880px; top: 470px;">
                 <button type="submit" style="border-radius: 5px; "onclick="window.location.href='signup.php'">SIGNUP</button>

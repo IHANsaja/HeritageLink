@@ -2,6 +2,9 @@
 
 <?php
 
+
+
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST['username'];
     $password = $_POST['password'];  // Get the password input
@@ -78,11 +81,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="login5" style="left:910px; top: 130px;">
                 <h2 style="color:#AD6A6C;text-align: right;">Login</h2>
             </div>
+			<div>
+           <a href="../index.html"><img class="icons8-facebook-48-1"  alt="" style="left:1020px;top: 10px;  width: 20px;
+           height: 20px;" src="../assets/wrong.png" /></a></div>
 
+        
             <div class="login-child5" style="top: 30px;">
+			
                 <button id="sellerTab" style="border-radius: 4px;" onclick="window.location.href='seller-login.php'">SELLER</button>
                 <button id="userTab" class="active" style="left:740px; border-radius: 4px;" onclick="window.location.href='login.php'">USER</button>
-            </div>
+           
+		   </div>
 
             <div class="username" style="left:630px; top: 190px;"> Username
                 <div>
@@ -99,7 +108,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
 	
             <div class="login-child52" style="left:880px; top: 400px;">
-            <button type="submit" style="border-radius: 5px;" >LOGIN</button></a>
+               <button type="submit" style="border-radius: 5px;" >LOGIN</button></a>
             </div>
             <div class="login-child52" style="left:880px; top: 470px;">
                 <button type="submit" style="border-radius: 5px; "onclick="window.location.href='signup.php'">SIGNUP</button>

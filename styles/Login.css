@@ -108,7 +108,8 @@ body {
     left: 879px;
   }
   .icons8-facebook-48-11,
-  .icons8-google-logo-48-11 {
+  .icons8-google-logo-48-11
+   {
     position: absolute;
     top: 436px;
     left: 821px;
@@ -118,6 +119,19 @@ body {
 	border-radius: 5px;
 	 box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.25);
   }
+  
+  .icons8-facebook-48-1{
+	  
+    position: absolute;
+    top: 436px;
+    left: 821px;
+    width: 30px;
+    height: 30px;
+    object-fit: cover;
+	border-radius: 5px;
+	
+  }
+  
   .icons8-facebook-48-11 {
     left: 886px;
   }

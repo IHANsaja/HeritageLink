@@ -7,7 +7,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $_POST['password'];  // Get the password input
 
     
-    $con = new mysqli("localhost", "root", "", "heritage_link");
+    $con = new mysqli("localhost", "root", "", "heritagelink");
 
     
     if ($con->connect_error) {
@@ -26,21 +26,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             
             if ($password === $data['password']) {  // Direct comparison
-    echo "<script>alert('Login successful!');</script>";
-} else {
-    echo "<script>alert('Incorrect password.');</script>";
-}
-
+    $_SESSION['username'] = $username;
+            header("Location: marketplace.php");
+            exit();
         } else {
-            
-            echo "<script>alert('Incorrect username.');</script>";
+            echo "<script>alert('Incorrect password.');</script>";
         }
-
-        
-        $stmt->close();
-        $con->close();
+    } else {
+        echo "<script>alert('Username not found.');</script>";
     }
-}
+
+    $stmt->close();
+    $con->close();
+}}
 ?>
 
 
@@ -101,7 +99,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
 	
             <div class="login-child52" style="left:880px; top: 400px;">
-                <button type="submit" style="border-radius: 5px;" >LOGIN</button>
+             <a href='seller-dashboard.php'>    <button type="submit" style="border-radius: 5px;" onclick="window.location.href='seller-dashboard.php'">LOGIN</button></a>
             </div>
             <div class="login-child52" style="left:880px; top: 470px;">
                 <button type="submit" style="border-radius: 5px; "onclick="window.location.href='signup.php'">SIGNUP</button>

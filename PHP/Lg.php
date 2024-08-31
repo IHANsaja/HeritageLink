@@ -2,6 +2,10 @@
 
 <?php 
 
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+ 
 if (isset($_POST['username'])) {
     $username = $_POST['username'];
 
@@ -33,7 +37,9 @@ if (isset($_POST['username'])) {
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="initial-scale=1, width=device-width" />
-    <link rel="stylesheet" href="./Login.css" />
+    <link rel="stylesheet" href="../styles/Login.css" />
+	<link rel="icon" type="image/x-icon" href="../assets/favicon.png">
+    <title>Heritage Link Login</title>
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;800;900&display=swap"/>
@@ -58,7 +64,7 @@ if (isset($_POST['username'])) {
 <body  >
     <div class="login">
         <video width="100%"  autoplay muted playsinline loop>
-          <source src="./assets/pottery.mp4" type="video/mp4">
+          <source src="../assets/pottery.mp4" type="video/mp4">
          </video>
 
         
@@ -70,6 +76,9 @@ if (isset($_POST['username'])) {
             <div class="login5" style="left:760px; top: 130px;">
                 <h2 style="color:#AD6A6C;text-align: right;">Find your account</h2>
             </div>
+			<div>
+			  <a href="../index.html"><img class="icons8-facebook-48-1"  alt="" style="left:1020px;top: 10px;  width: 20px;
+           height: 20px;" src="../assets/wrong.png" /></a></div>
                                    
             <div class="login-child5" style="top: 30px;">
                 <button id="sellerTab" style="border-radius: 4px; color:white"onclick="window.location.href='seller-lg.php'">SELLER</button>
@@ -97,8 +106,8 @@ if (isset($_POST['username'])) {
                 <button type="submit" style="border-radius: 5px;;width:170px"onclick="window.location.href='Login.php'">Back </button>
             </div>
           </div>
-            <a href="https://www.google.com"><img class="icons8-google-logo-48-11" alt="" style="left:920px; top: 530px;" src="./assets/google.png" /></a>
-            <a href="https://www.facebook.com"><img class="icons8-facebook-48-11" alt="" style="left:970px; top: 530px;" src="./assets/facebook.png" /></a>
+            <a href="https://www.google.com"><img class="icons8-google-logo-48-11" alt="" style="left:920px; top: 530px;" src="../assets/google.png" /></a>
+            <a href="https://www.facebook.com"><img class="icons8-facebook-48-11" alt="" style="left:970px; top: 530px;" src="../assets/facebook.png" /></a>
         
         </form>
     </div>
@@ -109,8 +118,6 @@ if (isset($_POST['username'])) {
             const sellerTab = document.querySelector('#sellerTab');
             const userTab = document.querySelector('#userTab');
             const form = document.querySelector('form');
-			
-
            
             sellerTab.addEventListener('click', (event) => {
                 event.preventDefault();

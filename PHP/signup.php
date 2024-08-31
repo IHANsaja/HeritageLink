@@ -102,7 +102,7 @@ $conn->close();
             <p class="success"><?php echo $reg_success; ?></p>
         <?php endif; ?>
         <!--form-->
-        <form id="regForm" action="" method="POST">
+        <form id="regForm" action="login.php" method="POST">
             <!-- Role Selection -->
             <input type="hidden" id="role" name="role" value="seller">
             <!-- Tab 1 -->

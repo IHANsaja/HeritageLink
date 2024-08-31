@@ -1,0 +1,239 @@
+
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 700px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f4f4f9;
+}
+
+.login {
+  position: relative;
+  justify-content: center;
+  font-size: var(--font-size-xl);
+  color: var(--color-gray-100);
+  font-family: var(--font-poppins);
+  box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  overflow: hidden;
+  max-width: 1050px;
+  width: 100%;
+}
+
+  .login-child {
+    position: absolute;
+    top: -50.6px;
+    left: 575.1px;
+    box-shadow: -5px 0 20px 1000px rgba(11, 53, 0, 0.26);
+    background-color: white;
+    width: 540.6px;
+    height: 700.1px;
+    transform: rotate(6.2deg);
+    transform-origin: 0 0;
+  }
+  .login-child1,
+  .login-child2,
+  .login-inner,
+  .login-item {
+    position: absolute;
+    top: 345px;
+    left: 814px;
+    border-radius: var(--br-5xs);
+    background-color: var(--color-silver);
+    width: 390px;
+    height: 70px;
+  }
+  .login-child1,
+  .login-child2,
+  .login-inner {
+    top: 462px;
+  }
+  .login-child1,
+  .login-child2 {
+    top: 579px;
+    left: 1103px;
+    background-color: var(--color-gray-100);
+    width: 101px;
+    height: 44px;
+  }
+  .login-child2 {
+    top: 696px;
+  }
+  .login4,
+  .password,
+  .signup1,
+  .username {
+    position: absolute;
+   color:#541E3A;
+   
+	width:100px;
+	height:30px;
+	text-align:center;
+    font-weight: 500;
+
+  }
+ 
+  .login4,
+  .signup1,
+  .username {
+    top: 306px;
+	
+  }
+  .login4,
+  .signup1 {
+    top: 586px;
+    left: 1124px;
+    font-weight: 600;
+	color:white;
+    background-color: #541E3A;
+  }
+  .signup1 {
+    top: 703px;
+    left: 1117px;
+  }
+  .login-child3,
+  .login-child4 {
+    position: absolute;
+    top: 430px;
+    left:593px;
+    box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 5px;
+    background-color: var(--color-white);
+    width: 44px;
+    height: 44px;
+  }
+  .login-child4 {
+    left: 879px;
+  }
+  .icons8-facebook-48-11,
+  .icons8-google-logo-48-11 {
+    position: absolute;
+    top: 436px;
+    left: 821px;
+    width: 30px;
+    height: 30px;
+    object-fit: cover;
+	border-radius: 5px;
+	 box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.25);
+  }
+  .icons8-facebook-48-11 {
+    left: 886px;
+  }
+  .herritage-link2,
+  .login5 {
+    position: absolute;
+    top: 90px;
+    
+	
+   
+    font-size: var(--font-size-21xl);
+    font-weight: 1000;
+    font-family: var(--font-kanit);
+  }
+  .login5 {
+    top: 217px;
+    left: 1124px;
+    font-size: var(--font-size-13xl);
+    font-weight: 500;
+     
+  }
+  
+  .if-you-dont,
+  .seller2,
+  .user1 {
+    position: absolute;
+    top: 81px;
+    font-weight: 600;
+	
+  }
+  .user1 {
+    left: 1016px;
+    color:white;
+  }
+  .if-you-dont,
+  .seller2 {
+    left: 912px;
+  }
+  .if-you-dont {
+    top: 696px;
+    left: 814px;
+    font-size: var(--font-size-sm);
+    text-align: justify;
+    display: inline-block;
+    width: 200px;
+	color:    #7a3e3e;
+  }
+
+.login-child52
+   {
+    position: absolute;
+    top: 73px;
+    left: 680px;
+  
+    
+	  color:white;
+    width: 103px;
+    height: 40px;
+	display: flex;
+    justify-content: center;
+  }
+  
+  .login-child52 button {
+	 width: 103px;
+    height: 40px;
+    background-color: #541E3A;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.login-child5
+   {
+    position: absolute;
+    
+    left: 760px;
+    color:white;
+    width: 103px;
+    height: 40px;
+	display: flex;
+    justify-content: center;
+  }
+
+.login-child5 button {
+	 width: 103px;
+    height: 40px;
+    background-color:#D7C1B9;
+    color: white;
+    border: none;
+	
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.login-child5 .active {
+    background-color:#541E3A;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+input[type="text"], input[type="password"] {
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+.login-btn {
+    padding: 15px;
+    background-color: #7a3e3e;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}

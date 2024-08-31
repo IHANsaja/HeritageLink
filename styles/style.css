@@ -1,0 +1,552 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  max-width: 100vw;
+  background-color: #E8D6CB;
+}
+
+.nav-bar {
+  width: 80%;
+  position: sticky;
+  border-radius: 10px;
+  background-color: #5D2E46;
+  height: 75px;
+  overflow: hidden;
+  text-align: left;
+  font-size: 20px;
+  color: #E8D6CB;
+  font-family: 'Poppins', sans-serif;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  margin: 10px auto;
+}
+
+.nav-bar .nav-links a{
+  text-decoration: none !important;
+  color: #E8D6CB !important;
+}
+
+.logo {
+  height: 55px;
+  border-radius: 50%;
+}
+
+.brandname{
+  display: none;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Kanit';
+  font-size: 20px;
+}
+
+.nav-links {
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+}
+
+.nav-links a{
+  text-decoration: none !important;
+  color: #E8D6CB !important;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.nav-links a:hover{
+  background-color: #541E3A;
+}
+
+.nav-links a:active{
+  background-color: #541E3A;
+}
+
+.nav-links a:focus{
+  background-color:#541E3A;
+}
+
+.login {
+  display: flex;
+  flex-direction: row;
+}
+
+.login .login-btn button {
+  height: 45px;
+  width: 100px;
+  border: 3px solid #AD6A6C;
+  background-color: #5D2E46;
+  color: #E8D6CB;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: 8px 0px 0px 8px;
+  cursor: pointer;
+  transition: 0.5s ease-in-out;
+}
+
+.login .login-btn button:hover {
+  border: none;
+  background-color: #AD6A6C;
+}
+
+.login .link-btn button {
+  height: 45px;
+  width: 100px;
+  border: none;
+  background-color: #AD6A6C;
+  color: #E8D6CB;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: 0px 8px 8px 0px;
+}
+
+.nav-bar img {
+  height: 55px;
+  border-radius: 50%;
+}
+
+.menu-toggle {
+  display: none;
+  font-size: 30px;
+  cursor: pointer;
+}
+
+.mobile-menu {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #5D2E46;
+  color: #E8D6CB;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.close-menu {
+  font-size: 40px;
+  cursor: pointer;
+  align-self: flex-end;
+  margin: 20px;
+}
+
+.mobile-nav-links {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.mobile-login {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.mobile-menu.show {
+  display: flex;
+  opacity: 1;
+}
+
+.mobile-login .login-btn button, 
+.mobile-login .link-btn button {
+  height: 40px;
+  width: 150%;
+  font-size: 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+}
+
+.mobile-login .login-btn button {
+  border: 3px solid #AD6A6C;
+  background-color: #5D2E46;
+  color: #E8D6CB;
+}
+
+.mobile-login .login-btn button:hover {
+  border: none;
+  background-color: #AD6A6C;
+}
+
+.mobile-login .link-btn button {
+  border: none;
+  background-color: #AD6A6C;
+  color: #E8D6CB;
+}
+
+.mobile-login .link-btn button:hover {
+  border: 3px solid #AD6A6C;
+  background-color: #5D2E46;
+}
+
+@media (max-width: 768px) {
+  .nav-bar {
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .nav-links {
+    display: none;
+  }
+
+  .login {
+    display: none;
+  }
+
+  .brandname{
+    display: block;
+  }
+
+  .menu-toggle {
+    display: flex;
+    position: absolute;
+    right: 20px;
+  }
+  .nav-bar img{
+    position: absolute;
+    left: 20px;
+  }
+}
+/* ------------------------------------------------container------------------------------------------------ */
+
+
+
+/* ------------------------------------------------box1------------------------------------------------ */
+
+/* Base styles */
+/* General Styling */
+.box1 {
+  width: 100%;
+  min-height: 40vh; /* Use viewport height for flexibility */
+  background-color: #AD6A6C;
+  display: flex;
+  justify-content: center;
+  color: white;
+  padding: 2% 0; /* Add padding for better spacing */
+}
+
+.box1 .about {
+  width: 80%;
+  height: auto;
+}
+
+.box1 img {
+  max-width: 80%; /* Make the image responsive */
+  height: auto;
+  margin-left: 20%; /* Adjust margin to keep image centered */
+  margin-top: 1%;
+}
+
+.who-we-are h1 {
+  font-size: 3rem; /* Use rem units for scalable text */
+  margin-bottom: 2%;
+  margin-top: 3%;
+}
+
+.dis p {
+  font-family: 'Poppins', sans-serif;
+  padding-top: 1%;
+  font-size: 1.5rem;
+  font-weight: 500;
+  text-align: justify;
+  text-align-last: left;
+}
+
+/* General Styling */
+.box2 {
+  width: 100%;
+  min-height: 60vh; /* Flexible height */
+  background-color: #ffffff;
+  padding: 2% 0; /* Add padding for spacing */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.attention{
+  color:#AD6A6C ;
+}
+
+/* Image and description container */
+.image-text-container {
+  display: flex;
+  width: 90%;
+  margin: 2% auto;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Image styles */
+.sigiriya, .yapahuwa {
+  width: 35%;
+  height: auto;
+  object-fit: cover;
+  border-radius: var(--br-8xl-5);
+  margin-bottom: 0;
+  
+}
+
+
+/* Description styles */
+.sigiriya-dis {
+  width: 55%;
+  font-weight: 600;
+  color: var(--color-gray-200);
+  text-align: justify;
+  font-size: 1.2rem;
+  margin-left: 5.8%;
+  margin-top: -5%;
+  
+}
+.yapahuwa-dis {
+  width: 55%;
+  font-weight: 600;
+  color: var(--color-gray-200);
+  text-align: justify;
+  font-size: 1.2rem;
+  margin-right: 6%;
+  margin-top: -8%;
+  margin-bottom: 0;
+  
+}
+
+/* Button styles */
+.attention {
+  font-size: 2.5rem; /* Scalable font size */
+  font-weight: 800;
+  margin: 2% auto; /* Center buttons */
+  text-align: center;
+  display: block;
+}
+
+.more {
+  position: relative;
+  font-size: 2.5rem; /* Scalable font size */
+  margin: -10%;
+  font-weight: 800;
+  margin-left: 50%;
+  text-align: center;
+  display: block;
+  margin-bottom: 5%;
+}
+
+.more1 {
+  position: relative;
+  font-size: 2.5rem; /* Scalable font size */
+  font-weight: 800;
+  margin: -7%;
+  text-align: center;
+  display: block;
+  margin-left: -82%;
+  margin-bottom: 5%;
+}
+
+.more1 .a {
+  text-decoration: none;
+  color: white;
+}
+
+.more1 button, .more button {
+  background-color: #AD6A6C;
+  border: none;
+  color: white;
+  padding: 10% 70%;
+  font-size: 1.5rem;
+  font-weight: 700;
+  border-style: solid;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+
+/* General Styling for Mobile (768px and below) */
+@media (max-width: 768px) {
+  .box1 {
+    padding: 5% 0; /* Increase padding for mobile */
+    min-height: auto; /* Let the height adjust naturally */
+  }
+
+  .box1 .about {
+    width: 90%; /* Adjust the width for mobile */
+  }
+
+  .box1 img {
+    max-width: 90%; /* Make sure the image takes up more space */
+    margin-left: 5%; /* Center the image on mobile */
+    margin-top: 2%;
+  }
+
+  .who-we-are h1 {
+    font-size: 2.5rem; /* Scale down the font size */
+    margin-top: 5%;
+  }
+
+  .dis p {
+    font-size: 1.2rem; /* Adjust text size for readability on mobile */
+  }
+
+  .box2 {
+    padding: 5% 0; /* Add more padding for a better layout on mobile */
+  }
+
+  .image-text-container {
+    flex-direction: column; /* Stack images and text vertically */
+    align-items: center; /* Center content */
+    width: 100%;
+    margin: 5% 0;
+  }
+
+  .sigiriya, .yapahuwa {
+    width: 90%; /* Make images take up more space */
+    margin-bottom: 5%; /* Add space between image and text */
+    order: 1;
+  }
+
+  .sigiriya-dis, .yapahuwa-dis {
+    width: 90%; /* Ensure text takes up full width */
+    margin: 0 auto 0; /* Center text on mobile and add margin below */
+    text-align: center; /* Center text for better readability */
+    font-size: 1rem; /* Adjust text size */
+    order: 2;
+  }
+
+  /* Button styles */
+  .attention, .more1, .more {
+    font-size: 2rem; /* Scale down button font size */
+    margin: 5% auto; /* Center and add space around the button */
+    text-align: center;
+  }
+
+  .more {
+    margin-left: auto; /* Center button */
+    margin-right: auto;
+    margin-top: 5%;
+  }
+
+  .more1 {
+    margin-left: auto; /* Center button */
+    margin-right: auto;
+    margin-top: 5%;
+  }
+
+  .more1 button, .more button {
+    padding: 10% 40%; /* Reduce padding for mobile buttons */
+    font-size: 1.2rem; /* Adjust button text size */
+  }
+}
+
+
+
+/* ---------------------------------------------footer------------------------------------------------------------ */
+
+.footer {
+  width: 100%;
+  position: relative;
+  background-color: #5D2E46;
+  height: 316px;
+  overflow: hidden;
+  text-align: justify;
+  font-size: 20px;
+  color: #E8D6CB;
+  font-family: 'Poppins', sans-serif;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.socials {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.socials i {
+  font-size: 40px;
+}
+
+.heritage-map {
+  display: flex;
+  flex-direction: column;
+}
+
+.heritage-map img {
+  width: 300px;
+  height: 250px;
+  mask-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 100 100"><rect x="0" y="0" width="100" height="100" fill="white"/></svg>');
+  mask-position: 0px 50px;
+  mask-size: cover;
+  mask-repeat: no-repeat;
+}
+
+.heritageconnect-sri-lanka {
+  font-weight: 500;
+  color: #E8D6CB;
+  background-color: #5D2E46;
+  font-family: 'Poppins', sans-serif;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.home-parent {
+  font-size: 25px;
+  font-weight: 500;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+@media (max-width: 768px) {
+  .footer {
+      flex-direction: column;
+      height: auto;
+      padding: 20px;
+      font-size: 16px; 
+      gap: 50px;
+  }
+
+  .socials i {
+      font-size: 30px;
+  }
+
+  .heritage-map{
+      justify-content: center;
+      align-items: center;
+  }
+
+  .heritage-map img {
+      width: 200px; 
+      height: 180px; 
+      mask-position: 0px 25px; 
+  }
+
+  .home-parent {
+      font-size: 20px;
+      text-align: center;
+  }
+
+  .heritageconnect-sri-lanka {
+      font-size: 14px;
+      padding: 10px;
+      position: relative; 
+  }
+}
+

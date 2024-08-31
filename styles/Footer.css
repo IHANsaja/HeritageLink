@@ -1,0 +1,102 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.footer {
+    width: 100%;
+    position: relative;
+    background-color: #5D2E46;
+    height: 316px;
+    overflow: hidden;
+    text-align: justify;
+    font-size: 20px;
+    color: #E8D6CB;
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.socials {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.socials i {
+    font-size: 40px;
+}
+
+.heritage-map {
+    display: flex;
+    flex-direction: column;
+}
+
+.heritage-map img {
+    width: 300px;
+    height: 250px;
+    mask-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 100 100"><rect x="0" y="0" width="100" height="100" fill="white"/></svg>');
+    mask-position: 0px 50px;
+    mask-size: cover;
+    mask-repeat: no-repeat;
+}
+
+.heritageconnect-sri-lanka {
+    font-weight: 500;
+    color: #E8D6CB;
+    background-color: #5D2E46;
+    font-family: 'Poppins', sans-serif;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.home-parent {
+    font-size: 25px;
+    font-weight: 500;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+@media (max-width: 768px) {
+    .footer {
+        flex-direction: column;
+        height: auto;
+        padding: 20px;
+        font-size: 16px; 
+        gap: 50px;
+    }
+
+    .socials i {
+        font-size: 30px;
+    }
+
+    .heritage-map{
+        justify-content: center;
+        align-items: center;
+    }
+
+    .heritage-map img {
+        width: 200px; 
+        height: 180px; 
+        mask-position: 0px 25px; 
+    }
+
+    .home-parent {
+        font-size: 20px;
+        text-align: center;
+    }
+
+    .heritageconnect-sri-lanka {
+        font-size: 14px;
+        padding: 10px;
+        position: relative; 
+    }
+}

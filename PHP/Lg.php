@@ -5,7 +5,7 @@
 if (isset($_POST['username'])) {
     $username = $_POST['username'];
 
-    $con = new mysqli("localhost", "root", "", "heritage_link");
+    $con = new mysqli("localhost", "root", "", "heritagelink");
    
     $stmt = $con->prepare('SELECT * FROM customers WHERE username = ?');
     $stmt->bind_param('s', $username);

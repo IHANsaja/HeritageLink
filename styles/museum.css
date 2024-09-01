@@ -58,9 +58,10 @@ body {
 }
 
 .slide img {
-    background-size: cover;
+    object-fit: cover;
     width: 100%;
-    transition: transform 1s;
+    height: 100%;
+    transition: transform 0.5s;
 }
 
 .slide img:hover {

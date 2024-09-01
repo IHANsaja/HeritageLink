@@ -37,7 +37,7 @@ body {
 }
 
 .role-button {
-    background-color: #5C3D54;
+    background-color: #A47D95;
     color: #fff;
     border: none;
     border-radius: 8px;
@@ -47,7 +47,7 @@ body {
     font-family: 'Poppins', sans-serif;
 }
 .role-button.active {
-    background-color: #A47D95;
+    background-color: #5C3D54;
 }
 
 .logo {

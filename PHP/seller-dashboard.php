@@ -6,6 +6,13 @@
     <title>Heritage Link Seller Dashboard</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.2.0/remixicon.css">
     <link rel="stylesheet" href="../styles/styles-sellerDB.css">
+    <script>
+        function showMessage(message) {
+            const messageDiv = document.getElementById('message');
+            messageDiv.textContent = message;
+            messageDiv.style.display = 'block';
+        }
+    </script>
 </head>
 <body>
 
@@ -64,48 +71,71 @@
     </div>
 
     <!-- Products Section -->
-<div id="products" class="tab-content">
-    <h3>Manage Products</h3>
-    
-    <!-- Add Product Form -->
-    <div class="add-product" id="add">
-        <h3>Add New Product</h3>
-        <form id="add-product-form" method="POST" action="add_product.php">
-            <input type="text" name="product_name" placeholder="Product Name" required>
-            <textarea name="description" placeholder="Product Description"></textarea>
-            <input type="number" name="price" placeholder="Price" required>
-            <input type="number" name="stock" placeholder="Stock" required>
-            <button type="submit">Add Product</button>
-        </form>
-    </div>
-
-    <!-- List of Products -->
-    <div id="product-list">
-        <?php
-        require 'config.php'; // your database configuration file
-        $seller_id = 1; // replace with dynamic seller ID
-        $query = "SELECT * FROM Products WHERE seller_id = $seller_id";
-        $result = mysqli_query($conn, $query);
+    <div id="products" class="products-tab">
+        <h3>Manage Products</h3>
         
-        if (mysqli_num_rows($result) > 0) {
-            while ($row = mysqli_fetch_assoc($result)) {
-                echo "
-                <div class='product-item'>
-                    <h4>{$row['product_name']}</h4>
-                    <p>{$row['description']}</p>
-                    <p>Price: {$row['price']}</p>
-                    <p>Stock: {$row['stock']}</p>
-                    <form method='POST' action='../PHP/delete_product.php'>
-                        <input type='hidden' name='product_id' value='{$row['product_id']}'>
-                        <button type='submit'>Delete</button>
-                    </form>
-                </div>";
+        <!-- Add Product Form -->
+        <div class="add-product" id="add">
+            <h3>Add New Product</h3>
+            <form id="add-product-form">
+                <!-- Your form fields here -->
+                <input type="text" name="seller_id" placeholder="Seller ID" required>
+                <input type="text" name="product_name" placeholder="Product Name" required>
+                <textarea name="description" placeholder="Description"></textarea>
+                <input type="number" name="price" placeholder="Price" required>
+                <input type="number" name="stock" placeholder="Stock" required>
+                <button type="submit">Add Product</button>
+            </form>
+        </div>
+        <div id="message" style="font-weight: 600;color: rgb(43, 255, 43); transition: 1s ease-in-out;"></div>
+
+        <!-- List of Products -->
+        <div id="product-list">
+            <?php
+            require 'config.php'; // Ensure this includes the correct database connection
+
+            $seller_id = 1; // Replace with the actual seller ID if needed
+
+            // Debug: Print the seller_id and SQL query
+            echo "<p>Seller ID: $seller_id</p>";
+
+            // Prepare SQL statement
+            $query = "SELECT * FROM Products WHERE seller_id = ?";
+            if ($stmt = $conn->prepare($query)) {
+                $stmt->bind_param("i", $seller_id); // Bind parameters
+                $stmt->execute();
+                $result = $stmt->get_result();
+
+                if ($result->num_rows > 0) {
+                    while ($row = $result->fetch_assoc()) {
+                        echo "
+                        <div class='product-item'>
+                            <h4>{$row['product_name']}</h4>
+                            <p>{$row['description']}</p>
+                            <p>Price: {$row['price']}</p>
+                            <p>Stock: {$row['stock']}</p>
+                            <form method='POST' action='../PHP/delete_product.php'>
+                                <input type='hidden' name='product_id' value='{$row['product_id']}'>
+                                <button type='submit'>Delete</button>
+                            </form>
+                            <form method='GET' action='../PHP/edit_product.php'>
+                                <input type='hidden' name='product_id' value='{$row['product_id']}'>
+                                <button type='submit'>Edit</button>
+                            </form>
+                        </div>";
+                    }
+                } else {
+                    echo "<p>No products found.</p>";
+                }
+
+                $stmt->close();
+            } else {
+                echo "<p>Error preparing the SQL statement: " . $conn->error . "</p>";
             }
-        } else {
-            echo "<p>No products found.</p>";
-        }
-        ?>
-    </div>
+
+            $conn->close();
+            ?>
+        </div>
     </div>
 
 

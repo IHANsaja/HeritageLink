@@ -22,7 +22,6 @@ body {
     background-color: #5D2E46;
     color: #FFF;
     display: flex;
-    flex-wrap: wrap;
     align-items: center;
     padding: 0 20px;
     z-index: 1;
@@ -36,21 +35,17 @@ body {
     color: #E8D6CB;
 }
 
-.top-bar span {
+.top-bar span, .top-bar .username {
     font-family: 'Poppins', sans-serif;
     font-size: 20px;
-    font-weight: 400;
     color: #E8D6CB;
 }
 
 .top-bar .username {
     font-size: 18px;
     display: flex;
-    flex-direction: row;
-    justify-content: center;
     align-items: center;
     gap: 15px;
-    color: #E8D6CB;
 }
 
 .top-bar .username .seller-icon {
@@ -77,13 +72,10 @@ body {
     top: 60px; /* Starts right under the header */
     bottom: 0;
     left: 0;
-    z-index: 0; /* Sidebar goes under the header */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     padding-bottom: 30px;
-    flex-grow: 1;
-    flex-shrink: 1;
 }
 
 /* Menu Items */
@@ -91,34 +83,18 @@ body {
     flex-grow: 1;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
     padding-top: 20px;
     width: 100%;
 }
 
-/* Individual menu items */
 .menu a {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    padding-left: 20px;
-    padding-right: 20px;
+    padding: 0 20px;
     height: 60px;
-    width: 100%;
     color: #FFF;
     text-decoration: none;
     background-color: transparent;
-}
-
-.menu .item1,
-.menu .item2,
-.menu .item3{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 20px;
 }
 
 .menu a:hover {
@@ -128,15 +104,12 @@ body {
 /* Icons inside the menu items */
 .menu a i {
     font-size: 20px;
-    color: #FFF;
 }
 
 .settings {
-    margin-top: auto;
     background-color: #5D2E46;
     height: 50px;
-    margin-left: 20px;
-    margin-right: 20px;
+    margin: 20px; /* Adjust margin for better spacing */
     border-radius: 8px;
     display: flex;
     align-items: center;
@@ -144,30 +117,24 @@ body {
     gap: 10px;
     font-size: 18px;
     cursor: pointer;
-    top: 50%;
-    transform: translateY(-50%);
     transition: 0.4s ease-in-out;
 }
 
 .settings i {
     color: #E8D6CB;
-    transition: 0.6s ease-in-out;
 }
 
 a.settings-link {
-    height: 60px;
-    margin-left: 20px;
-    margin-right: 20px;
     text-decoration: none;
     color: #E8D6CB;
 }
 
-.settings:hover{
+.settings:hover {
     scale: 1.1;
     box-shadow: 0px 5px 10px #5D2E46;
 }
 
-.settings-link:hover i{
+.settings-link:hover i {
     scale: 1.3;
     rotate: 360deg;
 }
@@ -201,7 +168,7 @@ a.settings-link {
     width: 750px;
 }
 
-.vert{
+.vert {
     display: flex;
     flex-direction: column;
     gap: 30px;
@@ -215,12 +182,10 @@ a.settings-link {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-.product-item h4 {
-    font-size: 18px;
-}
-
+.product-item h4,
 .product-item p {
     font-size: 16px;
+    margin-bottom: 5px;
 }
 
 .product-item button {
@@ -238,28 +203,27 @@ a.settings-link {
 }
 
 .products-tab {
-    margin-left: 250px !important;
-    padding: 20px !important;
-    display: flex !important;
-    flex-direction: column !important;
-    gap: 20px !important;
+    margin-left: 250px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
     color: #5D2E46;
 }
 
 #add-product-form {
-    margin-bottom: 20px !important; /* Adds space below the form */
+    margin-bottom: 30px; /* Added space below the form */
 }
 
 #product-list {
-    margin-bottom: 20px !important; /* Adds space below the product list */
+    margin-bottom: 20px; /* Added space below the product list */
 }
 
 .products-tab h3 {
-    margin-bottom: 20px !important; /* Adds space below the header */
-    
+    margin-bottom: 20px; /* Added space below the header */
 }
 
-.add-product{
+.add-product {
     color: #fff;
     background-color: #AD6A6C;
     display: flex;
@@ -269,7 +233,7 @@ a.settings-link {
     width: 50%;
 }
 
-.add-product form{
+.add-product form {
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -277,39 +241,37 @@ a.settings-link {
     align-items: center;
 }
 
-.add-product form button{
+.add-product form button {
     width: 150px;
-    height: 25px;
+    height: 40px;
     border-radius: 4px;
     border: none;
     background-color: #5D2E46;
     color: #E8D6CB;
     font-weight: 500;
-    font-family: 'Poppins', sans-serif;
     cursor: pointer;
 }
 
-.add-product form input, textarea{
+.add-product form input,
+textarea {
     padding-inline: 10px;
     width: 100%;
     background-color: #E8D6CB;
+    border-radius: 4px;
+    border: none;
 }
 
-.add-product form input::placeholder, textarea::placeholder{
-    font-family: 'Poppins', sans-serif;
+.add-product form input::placeholder,
+textarea::placeholder {
     color: #83586e;
 }
 
-.add-product form input{
-    height: 25px;
-    border-radius: 4px;
-    border: none;
+.add-product form input {
+    height: 40px;
 }
 
-.add-product form textarea{
-    height: 50px;
-    border-radius: 4px;
-    border: none;
+.add-product form textarea {
+    height: 80px;
 }
 
 .db-online {
@@ -317,13 +279,12 @@ a.settings-link {
     top: 70px;
     right: 20px;
     background-color: #fff;
-    color: rgb(6, 204, 6);
+    color: rgb(6, 204, 6); /* Text color */
     height: 40px;
     width: 100px;
     border-radius: 8px;
     z-index: 1000;
     display: flex;
-    flex-direction: row;
     justify-content: center;
     align-items: center;
     gap: 10px;
@@ -331,6 +292,26 @@ a.settings-link {
     cursor: pointer;
     animation: pulse 1s infinite;
 }
+
+.db-offline {
+    position: absolute;
+    top: 70px;
+    right: 20px;
+    background-color: #fff;
+    color: rgb(204, 6, 6); /* Text color */
+    height: 40px;
+    width: 100px;
+    border-radius: 8px;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 0 10px rgba(204, 6, 6, 0.5);
+    cursor: pointer;
+    animation: pulse 1s infinite;
+}
+
 
 @keyframes pulse {
     0% {
@@ -341,62 +322,5 @@ a.settings-link {
     }
     100% {
         box-shadow: 0 0 5px rgba(6, 204, 6, 0.5);
-    }
-}
-
-.db-offline{
-    position: absolute;
-    top: 70px;
-    right: 20px;
-    background-color: #fff;
-    color: rgb(204, 6, 6);
-    height: 40px;
-    width: 100px;
-    border-radius: 8px;
-    z-index: 1000;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    box-shadow: 0px 0px 5px rgb(204, 6, 6);
-    cursor:pointer;
-}
-
-.analytics{
-    margin-left: 250px !important;
-    padding: 20px !important;
-}
-
-/* Responsive Adjustments */
-@media screen and (max-width: 1024px) {
-    .sidebar {
-        width: 25%;
-    }
-    .content {
-        margin-left: 25%;
-    }
-}
-
-@media screen and (max-width: 768px) {
-    .top-bar h2 {
-        font-size: 20px;
-    }
-
-    .top-bar span {
-        font-size: 16px;
-    }
-
-    .top-bar .username {
-        font-size: 14px;
-    }
-
-    .sidebar {
-        width: 200px;
-    }
-
-    .content {
-        margin-left: 200px;
-        padding: 10px;
     }
 }

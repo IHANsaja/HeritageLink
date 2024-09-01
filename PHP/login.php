@@ -1,10 +1,6 @@
 <!------ user -login page------>
 
 <?php
-
-
-
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST['username'];
     $password = $_POST['password'];  // Get the password input
@@ -30,7 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             
             if ($password === $data['password']) {  // Direct comparison
     $_SESSION['username'] = $username;
-            header("Location: marketplace.php");
+            header("Location: ../index.html");
             exit();
         } else {
             echo "<script>alert('Incorrect password.');</script>";
@@ -82,8 +78,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <h2 style="color:#AD6A6C;text-align: right;">Login</h2>
             </div>
 			<div>
-           <a href="../index.html"><img class="icons8-facebook-48-1"  alt="" style="left:1020px;top: 10px;  width: 20px;
-           height: 20px;" src="../assets/wrong.png" /></a></div>
+          
 
         
             <div class="login-child5" style="top: 30px;">

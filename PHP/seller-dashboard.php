@@ -68,13 +68,16 @@
     <h3>Manage Products</h3>
     
     <!-- Add Product Form -->
-    <form id="add-product-form" method="POST" action="../PHP/add_product.php">
-        <input type="text" name="product_name" placeholder="Product Name" required>
-        <textarea name="description" placeholder="Product Description"></textarea>
-        <input type="number" name="price" placeholder="Price" required>
-        <input type="number" name="stock" placeholder="Stock" required>
-        <button type="submit">Add Product</button>
-    </form>
+    <div class="add-product" id="add">
+        <h3>Add New Product</h3>
+        <form id="add-product-form" method="POST" action="add_product.php">
+            <input type="text" name="product_name" placeholder="Product Name" required>
+            <textarea name="description" placeholder="Product Description"></textarea>
+            <input type="number" name="price" placeholder="Price" required>
+            <input type="number" name="stock" placeholder="Stock" required>
+            <button type="submit">Add Product</button>
+        </form>
+    </div>
 
     <!-- List of Products -->
     <div id="product-list">

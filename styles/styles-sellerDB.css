@@ -237,6 +237,136 @@ a.settings-link {
     background-color: #5D2E46;
 }
 
+.products-tab {
+    margin-left: 250px !important;
+    padding: 20px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 20px !important;
+    color: #5D2E46;
+}
+
+#add-product-form {
+    margin-bottom: 20px !important; /* Adds space below the form */
+}
+
+#product-list {
+    margin-bottom: 20px !important; /* Adds space below the product list */
+}
+
+.products-tab h3 {
+    margin-bottom: 20px !important; /* Adds space below the header */
+    
+}
+
+.add-product{
+    color: #fff;
+    background-color: #AD6A6C;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    border-radius: 10px;
+    width: 50%;
+}
+
+.add-product form{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+.add-product form button{
+    width: 150px;
+    height: 25px;
+    border-radius: 4px;
+    border: none;
+    background-color: #5D2E46;
+    color: #E8D6CB;
+    font-weight: 500;
+    font-family: 'Poppins', sans-serif;
+    cursor: pointer;
+}
+
+.add-product form input, textarea{
+    padding-inline: 10px;
+    width: 100%;
+    background-color: #E8D6CB;
+}
+
+.add-product form input::placeholder, textarea::placeholder{
+    font-family: 'Poppins', sans-serif;
+    color: #83586e;
+}
+
+.add-product form input{
+    height: 25px;
+    border-radius: 4px;
+    border: none;
+}
+
+.add-product form textarea{
+    height: 50px;
+    border-radius: 4px;
+    border: none;
+}
+
+.db-online {
+    position: absolute;
+    top: 70px;
+    right: 20px;
+    background-color: #fff;
+    color: rgb(6, 204, 6);
+    height: 40px;
+    width: 100px;
+    border-radius: 8px;
+    z-index: 1000;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 0 10px rgba(6, 204, 6, 0.5);
+    cursor: pointer;
+    animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 5px rgba(6, 204, 6, 0.5);
+    }
+    50% {
+        box-shadow: 0 0 10px rgba(6, 204, 6, 1);
+    }
+    100% {
+        box-shadow: 0 0 5px rgba(6, 204, 6, 0.5);
+    }
+}
+
+.db-offline{
+    position: absolute;
+    top: 70px;
+    right: 20px;
+    background-color: #fff;
+    color: rgb(204, 6, 6);
+    height: 40px;
+    width: 100px;
+    border-radius: 8px;
+    z-index: 1000;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0px 0px 5px rgb(204, 6, 6);
+    cursor:pointer;
+}
+
+.analytics{
+    margin-left: 250px !important;
+    padding: 20px !important;
+}
 
 /* Responsive Adjustments */
 @media screen and (max-width: 1024px) {

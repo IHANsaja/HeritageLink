@@ -226,5 +226,5 @@ input[type="text"]#business-name, input[type="text"]#address {
     background-color: #3a2b37;
 }
 .login-para{
-    font-size: 14px;
+    font-size: 14px;/*font adjustments*/
 }

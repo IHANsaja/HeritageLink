@@ -1,13 +1,12 @@
 <!------ user -login page------>
 
 <?php
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST['username'];
     $password = $_POST['password'];  // Get the password input
 
     
-    $con = new mysqli("localhost", "root", "", "heritage_link");
+    $con = new mysqli("localhost", "root", "", "heritagelink");
 
     
     if ($con->connect_error) {
@@ -26,21 +25,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             
             if ($password === $data['password']) {  // Direct comparison
-    echo "<script>alert('Login successful!');</script>";
-} else {
-    echo "<script>alert('Incorrect password.');</script>";
-}
-
+    $_SESSION['username'] = $username;
+            header("Location: ../index.html");
+            exit();
         } else {
-            
-            echo "<script>alert('Incorrect username.');</script>";
+            echo "<script>alert('Incorrect password.');</script>";
         }
-
-        
-        $stmt->close();
-        $con->close();
+    } else {
+        echo "<script>alert('Username not found.');</script>";
     }
-}
+
+    $stmt->close();
+    $con->close();
+}}
 ?>
 
 
@@ -80,11 +77,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="login5" style="left:910px; top: 130px;">
                 <h2 style="color:#AD6A6C;text-align: right;">Login</h2>
             </div>
+			<div>
+          
 
+        
             <div class="login-child5" style="top: 30px;">
+			
                 <button id="sellerTab" style="border-radius: 4px;" onclick="window.location.href='seller-login.php'">SELLER</button>
                 <button id="userTab" class="active" style="left:740px; border-radius: 4px;" onclick="window.location.href='login.php'">USER</button>
-            </div>
+           
+		   </div>
 
             <div class="username" style="left:630px; top: 190px;"> Username
                 <div>
@@ -101,7 +103,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
 	
             <div class="login-child52" style="left:880px; top: 400px;">
-                <button type="submit" style="border-radius: 5px;" >LOGIN</button>
+               <button type="submit" style="border-radius: 5px;" >LOGIN</button></a>
             </div>
             <div class="login-child52" style="left:880px; top: 470px;">
                 <button type="submit" style="border-radius: 5px; "onclick="window.location.href='signup.php'">SIGNUP</button>

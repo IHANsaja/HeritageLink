@@ -10,7 +10,6 @@ if (!$conn) {
     die('Database not connected!');
 }
 
-
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $seller_id = $_POST['seller_id'];
     $product_name = $_POST['product_name'];
@@ -19,21 +18,40 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $stock = $_POST['stock'];
 
     // Check if the seller_id exists in the Sellers table
-    $check_query = "SELECT * FROM Sellers WHERE seller_id = '$seller_id'";
-    $check_result = mysqli_query($conn, $check_query);
+    $check_query = "SELECT * FROM Sellers WHERE seller_id = ?";
+    $stmt = $conn->prepare($check_query);
+    $stmt->bind_param("i", $seller_id);
+    $stmt->execute();
+    $check_result = $stmt->get_result();
 
-    if (mysqli_num_rows($check_result) > 0) {
-        // Insert product into the database
-        $query = "INSERT INTO Products (seller_id, product_name, description, price, stock) 
-                  VALUES ('$seller_id', '$product_name', '$description', '$price', '$stock')";
+    if ($check_result->num_rows > 0) {
+        // Check if the product already exists
+        $product_check_query = "SELECT * FROM Products WHERE seller_id = ? AND product_name = ?";
+        $stmt = $conn->prepare($product_check_query);
+        $stmt->bind_param("is", $seller_id, $product_name);
+        $stmt->execute();
+        $product_check_result = $stmt->get_result();
 
-        if (mysqli_query($conn, $query)) {
-            echo "Product added successfully!";
+        if ($product_check_result->num_rows == 0) {
+            // Insert product into the database
+            $query = "INSERT INTO Products (seller_id, product_name, description, price, stock) 
+                      VALUES (?, ?, ?, ?, ?)";
+            $stmt = $conn->prepare($query);
+            $stmt->bind_param("issdi", $seller_id, $product_name, $description, $price, $stock);
+
+            if ($stmt->execute()) {
+                echo "Product added successfully!";
+            } else {
+                echo "Error: " . $stmt->error;
+            }
         } else {
-            echo "Error: " . mysqli_error($conn);
+            echo "Error: Product already exists.";
         }
     } else {
         echo "Error: Seller ID does not exist.";
     }
+
+    $stmt->close();
+    $conn->close();
 }
 ?>

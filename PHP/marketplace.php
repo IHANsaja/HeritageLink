@@ -22,7 +22,37 @@
             <button><i class="fa-solid fa-magnifying-glass"></i><p>search</p></button>
         </div>
         <div class="user-profile">
-            <span>Mahinda</span>
+            <?php
+            $servername = "localhost";
+            $username = "root"; 
+            $password = ""; 
+            $dbname = "heritagelink"; 
+            
+            $conn = mysqli_connect($servername, $username, $password, $dbname);
+            
+            if (!$conn) {
+                die('<div class="db-offline" id="db-status" title="Database is offline"><i class="ri-checkbox-circle-fill"></i><p>Offline</p></div>');
+            }
+            session_start(); // Start the session to access session variables
+
+            if (isset($_SESSION['seller_id'])) {
+                $seller_id = $_SESSION['seller_id'];
+
+                // Query to get the seller's username
+                $sql = "SELECT username FROM Sellers WHERE seller_id = '$seller_id'";
+                $result = mysqli_query($conn, $sql);
+
+                // Fetch the result and display the username
+                if ($row = mysqli_fetch_assoc($result)) {
+                    $seller_username = "<a class='sellDB' href='seller-dashboard.php'>" . htmlspecialchars($row['username']) . "</a>";
+                } else {
+                    $seller_username = "Guest"; // Default if no username found
+                }
+            } else {
+                $seller_username = "Guest"; // If 'seller_id' is not set, show as Guest
+            }
+            ?>
+            <span><?php echo $seller_username; ?></span>
             <div class="icon">
                 <img src="../assets/seller-icon.png" alt="User">
             </div>

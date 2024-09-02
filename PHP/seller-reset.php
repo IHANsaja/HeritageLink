@@ -83,9 +83,7 @@ if (isset($_GET['username'])) {
             <div class="login5" style="left:780px; top: 130px;">
                 <h2 style="color:#bc8f8f;text-align: right;">Reset password</h2>
             </div>
-			<div>
-			  <a href="../index.html"><img class="icons8-facebook-48-1"  alt="" style="left:1020px;top: 10px;  width: 20px;
-           height: 20px;" src="../assets/wrong.png" /></a></div>
+			
             <div class="login-child5" style="top: 30px;">
                 <button id="sellerTab"class="active" style="border-radius: 4px;" class="active"onclick="window.location.href='seller-reset.php'">SELLER</button>
                 <button id="userTab"  style="left:740px; border-radius: 4px;"onclick="window.location.href='reset.php'">USER</button>
@@ -109,8 +107,9 @@ if (isset($_GET['username'])) {
                 <button type="submit" style="border-radius: 5px;width:170px"onclick="window.location.href='seller-lg.php'">Back</button>
             </div>
             </div>
-            <a href="https://www.google.com"><img class="icons8-google-logo-48-11" alt="" style="left:920px; top: 530px;" src="../assets/google.png" /></a>
-            <a href="https://www.facebook.com"><img class="icons8-facebook-48-11" alt="" style="left:970px; top: 530px;" src="../assets/facebook.png" /></a>
+            <a href="https://www.google.com"><img class="icons8-google-logo-48-11" alt="" style="left:960px; top: 550px;" src="../assets/google.png" /></a>
+            <a href="https://www.facebook.com"><img class="icons8-facebook-48-11" alt="" style="left:1010px; top: 550px;" src="../assets/facebook.png" /></a>
+        
         </form>
     </div>
 

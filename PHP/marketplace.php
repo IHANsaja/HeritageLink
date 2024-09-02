@@ -12,7 +12,7 @@
     <header>
         <img src="../assets/logoLarge.jpeg" alt="logo" class="logo">
         <div class="nav-links">
-            <a href="../index.html"><div class="home">HOME</div></a>
+            <a href="../index.php"><div class="home">HOME</div></a>
             <a href="../museum.html"><div class="museum">MUSEUM</div></a>
             <a href="marketplace.php"><div class="market">MARKET</div></a>
             <a href="https://en.wikipedia.org/wiki/List_of_World_Heritage_Sites_in_Sri_Lanka" target="_blank"><div class="protect">PROTECT</div></a>

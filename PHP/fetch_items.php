@@ -21,7 +21,7 @@ if ($result->num_rows > 0) {
         $image = '../assets/sigiriya1.jpg';
         echo '<img src="' . $image . '" alt="' . htmlspecialchars($row["product_name"]) . '">';
         echo '<h3>' . htmlspecialchars($row["product_name"]) . '</h3>';
-        echo '<p>LKR ' . htmlspecialchars($row["price"]) . '</p>';
+        echo '<p>USD ' . htmlspecialchars($row["price"]) . '</p>';
         echo '<button>Buy</button>';
         echo '</div>';
     }

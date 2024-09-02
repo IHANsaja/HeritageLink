@@ -6,6 +6,7 @@
     <title>Heritage Link Seller Dashboard</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.2.0/remixicon.css">
     <link rel="stylesheet" href="../styles/styles-sellerDB.css">
+    <link rel="icon" type="image/x-icon" href="assets/favicon.png">
     <script>
         function showMessage(message) {
             const messageDiv = document.getElementById('message');

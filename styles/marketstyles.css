@@ -183,3 +183,8 @@ main {
 .product-item button:hover {
     background-color: #5C2342;
 }
+
+a.sellDB{
+    text-decoration: none;
+    color: #E8D6CB;
+}

@@ -35,8 +35,7 @@
         <a href="https://en.wikipedia.org/wiki/List_of_World_Heritage_Sites_in_Sri_Lanka" target="_blank"><div class="protect">PROTECT</div></a>
     </div>
     <div class="login">
-        <div class="login-btn"><a href="PHP/login.php"><button>LOGIN</button></a></div>
-        <div class="link-btn"><a href="PHP/signup.php"><button>LINK</button></a></div>
+      <?php include('PHP/navbar.php'); ?>
     </div>
     <div class="menu-toggle">
         <i class="ri-menu-line"></i>
@@ -54,8 +53,7 @@
         <div class="protect">PROTECT</div>
     </div>
     <div class="mobile-login">
-        <div class="login-btn"><a href=""><button>LOGIN</button></a></div>
-        <div class="link-btn"><a href=""><button>LINK</button></a></div>
+      <?php include('PHP/navbar.php'); ?>
     </div>
 </div>
 

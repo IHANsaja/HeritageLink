@@ -12,15 +12,81 @@
             messageDiv.textContent = message;
             messageDiv.style.display = 'block';
         }
+
+        function showSection(sectionId) {
+            document.querySelectorAll('.content').forEach((section) => {
+                section.style.display = 'none';
+            });
+            document.getElementById(sectionId).style.display = 'block';
+        }
     </script>
 </head>
 <body>
-
     <!-- Header / Top Bar -->
+    <?php
+    include 'config.php';
+    session_start(); // Start the session to access session variables
+
+    if (isset($_SESSION['seller_id'])) {
+        $seller_id = $_SESSION['seller_id'];
+
+        // Query to get the seller's username
+        $sql = "SELECT username FROM Sellers WHERE seller_id = '$seller_id'";
+        $result = mysqli_query($conn, $sql);
+
+        // Fetch the result and display the username
+        if ($row = mysqli_fetch_assoc($result)) {
+            $seller_username = htmlspecialchars($row['username']);
+        } else {
+            $seller_username = "Guest"; // Default if no username found
+        }
+
+        // Fetch monthly revenue
+        $revenue_query = $conn->prepare("
+            SELECT SUM(oi.price * oi.quantity) AS monthly_revenue 
+            FROM Orders o 
+            JOIN Order_Items oi ON o.order_id = oi.order_id 
+            JOIN Products p ON oi.product_id = p.product_id
+            WHERE p.seller_id = ? 
+              AND MONTH(o.created_at) = MONTH(CURDATE()) 
+              AND YEAR(o.created_at) = YEAR(CURDATE())
+        ");
+        $revenue_query->bind_param("i", $seller_id);
+        $revenue_query->execute();
+        $revenue_result = $revenue_query->get_result();
+        $revenue_data = $revenue_result->fetch_assoc();
+        $monthly_revenue = $revenue_data['monthly_revenue'] ? $revenue_data['monthly_revenue'] : 0;
+
+        // Fetch sales analysis
+        $analysis_query = $conn->prepare("
+            SELECT COUNT(DISTINCT o.order_id) AS total_sales, AVG(oi.price * oi.quantity) AS avg_order_value 
+            FROM Orders o 
+            JOIN Order_Items oi ON o.order_id = oi.order_id 
+            JOIN Products p ON oi.product_id = p.product_id
+            WHERE p.seller_id = ? 
+              AND MONTH(o.created_at) = MONTH(CURDATE()) 
+              AND YEAR(o.created_at) = YEAR(CURDATE())
+        ");
+        $analysis_query->bind_param("i", $seller_id);
+        $analysis_query->execute();
+        $analysis_result = $analysis_query->get_result();
+        $analysis_data = $analysis_result->fetch_assoc();
+        $total_sales = $analysis_data['total_sales'] ? $analysis_data['total_sales'] : 0;
+        $avg_order_value = $analysis_data['avg_order_value'] ? $analysis_data['avg_order_value'] : 0;
+
+        // Close connections
+        $revenue_query->close();
+        $analysis_query->close();
+        $conn->close();
+    } else {
+        $seller_username = "Guest"; // If 'seller_id' is not set, show as Guest
+    }
+    ?>
+
     <div class="top-bar">
         <h2>HeritageLink <span>Seller</span></h2>
         <div class="username">
-            <span>MAHINDA</span>
+            <span>Welcome, <?php echo $seller_username; ?>!</span>
             <div class="seller-icon">
                 <img src="../assets/seller-icon.png" alt="User Icon" style="margin-left: 10px; vertical-align: middle;">
             </div>
@@ -44,10 +110,24 @@
                     <i class="ri-arrow-right-s-fill"></i>
                 </div>
             </a>
-            <a href="#" class="menu-link" onclick="showSection('analytics')">
+            <a href="../index.php">
                 <div class="item3">
-                    <i class="ri-pie-chart-fill"></i>
-                    <span class="menu-item">Analytics</span>
+                    <i class="ri-home-office-fill"></i>
+                    <span class="menu-item">Home</span>
+                    <i class="ri-arrow-right-s-fill"></i>
+                </div>
+            </a>
+            <a href="../museum.html">
+                <div class="item4">
+                    <i class="ri-ancient-gate-fill"></i>
+                    <span class="menu-item">Museum</span>
+                    <i class="ri-arrow-right-s-fill"></i>
+                </div>
+            </a>
+            <a href="../PHP/marketplace.php">
+                <div class="item5">
+                    <i class="ri-store-fill"></i>
+                    <span class="menu-item">Marketplace</span>
                     <i class="ri-arrow-right-s-fill"></i>
                 </div>
             </a>
@@ -62,42 +142,50 @@
 
     <!-- Content Area -->
     <div class="content" id="dashboard">
-        <div class="card large"></div>
+        <div class="card large">
+            <h3>Monthly Revenue</h3>
+            <p>$<?php echo number_format($monthly_revenue, 2); ?></p>
+        </div>
         <div class="vert">
-            <div class="card small1"></div>
-            <div class="card small2"></div>
-            <div class="card small3"></div>
+            <div class="card small1">
+                <h3>Total Sales</h3>
+                <p><?php echo $total_sales; ?></p>
+            </div>
+            <div class="card small2">
+                <h3>Average Order Value</h3>
+                <p>$<?php echo number_format($avg_order_value, 2); ?></p>
+            </div>
+            <div class="card small3">
+                <h3>Sales Analysis</h3>
+                <p>Analyze your sales performance and trends here.</p>
+            </div>
         </div>
     </div>
 
     <!-- Products Section -->
-    <div id="products" class="products-tab">
+    <div id="products" class="products-tab" style="display: none;">
         <h3>Manage Products</h3>
         
         <!-- Add Product Form -->
         <div class="add-product" id="add">
             <h3>Add New Product</h3>
-            <form id="add-product-form">
-                <!-- Your form fields here -->
-                <input type="text" name="seller_id" placeholder="Seller ID" required>
+            <form id="add-product-form" method="POST" action="../PHP/add_product.php">
+                <input type="text" name="seller_id" placeholder="Your Seller ID" required>
                 <input type="text" name="product_name" placeholder="Product Name" required>
                 <textarea name="description" placeholder="Description"></textarea>
                 <input type="number" name="price" placeholder="Price" required>
                 <input type="number" name="stock" placeholder="Stock" required>
-                <button type="submit">Add Product</button>
+                <button type="submit" id="submit-btn">Add Product</button>
             </form>
         </div>
-        <div id="message" style="font-weight: 600;color: rgb(43, 255, 43); transition: 1s ease-in-out;"></div>
+        <div id="message" style="font-weight: 600; color: rgb(43, 255, 43); transition: 1s ease-in-out;"></div>
 
         <!-- List of Products -->
         <div id="product-list">
             <?php
             require 'config.php'; // Ensure this includes the correct database connection
 
-            $seller_id = 1; // Replace with the actual seller ID if needed
-
-            // Debug: Print the seller_id and SQL query
-            echo "<p>Seller ID: $seller_id</p>";
+            $seller_id = $_SESSION['seller_id']; // Get the actual seller ID from the session
 
             // Prepare SQL statement
             $query = "SELECT * FROM Products WHERE seller_id = ?";
@@ -139,13 +227,6 @@
     </div>
 
 
-    <!-- Analytics Section (Hidden by default) -->
-    <div class="content" id="analytics" style="display: none;">
-        <h2>Analytics</h2>
-        <!-- Analytics content here -->
-    </div>
-
     <script src="../scripts/script-sellerDB.js"></script>
-
 </body>
 </html>

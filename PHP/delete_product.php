@@ -1,20 +1,36 @@
 <?php
-require 'config.php'; // Include the database configuration file
+require 'config.php'; // Ensure this includes the correct database connection
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // Retrieve the product ID from the form submission
-    $product_id = $_POST['product_id'];
+// Check if product_id is set
+if (isset($_POST['product_id'])) {
+    $product_id = intval($_POST['product_id']); // Sanitize input
 
-    // Construct the SQL query to delete the product
-    $query = "DELETE FROM Products WHERE product_id = $product_id";
+    // Prepare SQL statement to delete the product
+    $stmt = $conn->prepare("DELETE FROM Products WHERE product_id = ?");
+    $stmt->bind_param("i", $product_id);
 
-    // Execute the SQL query
-    if (mysqli_query($conn, $query)) {
-        echo "<script>alert('Product deleted successfully!');</script>";
-        echo "<script>window.location.href = 'dashboard.php';</script>"; // Redirect back to the dashboard
+    if ($stmt->execute()) {
+        // Success
+        echo "<script>
+            alert('Product deleted successfully!');
+            window.location.href='../PHP/seller-dashboard.php';
+        </script>";
     } else {
-        echo "Error: " . $query . "<br>" . mysqli_error($conn);
+        // Error
+        echo "<script>
+            alert('Error deleting record: " . $conn->error . "');
+            window.location.href='../PHP/seller-dashboard.php';
+        </script>";
     }
-}
-?>
 
+    $stmt->close();
+} else {
+    // No product ID provided
+    echo "<script>
+        alert('No product ID provided.');
+        window.location.href='../PHP/seller-dashboard.php';
+    </script>";
+}
+
+$conn->close();
+?>

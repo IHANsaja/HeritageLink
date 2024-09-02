@@ -93,8 +93,10 @@ $conn->close();
             <button class="role-button active" onclick="selectRole('seller')">SELLER</button>
             <button class="role-button" onclick="selectRole('user')">USER</button>
         </div>
+        <div>
         <h1 class="logo">Heritage Link</h1>
         <h2 class="sub-heading">Register</h2>
+        </div>
         <?php if ($reg_error): ?>
             <p class="error"><?php echo $reg_error; ?></p>
         <?php endif; ?>
@@ -102,7 +104,7 @@ $conn->close();
             <p class="success"><?php echo $reg_success; ?></p>
         <?php endif; ?>
         <!--form-->
-        <form id="regForm" action="" method="POST">
+        <form id="regForm" action="login.php" method="POST">
             <!-- Role Selection -->
             <input type="hidden" id="role" name="role" value="seller">
             <!-- Tab 1 -->

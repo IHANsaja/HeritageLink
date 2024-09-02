@@ -5,8 +5,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST['username'];
     $password = $_POST['password'];  // Get the password input
 
-   
-    $con = new mysqli("localhost", "root", "", "heritage_link");
+    
+    $con = new mysqli("localhost", "root", "", "heritagelink");
 
     
     if ($con->connect_error) {
@@ -18,27 +18,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->execute();
         $stmt_result = $stmt->get_result();
 
-   
+        
         if ($stmt_result->num_rows > 0) {
-           
+            
             $data = $stmt_result->fetch_assoc();
 
-           
-            if ($password === $data['password']) {  
-    echo "<script>alert('Login successful!');</script>";
-} else {
-    echo "<script>alert('Incorrect password.');</script>";
-}
-
-        } else {
             
-            echo "<script>alert('Incorrect username.');</script>";
+            if ($password === $data['password']) {  // Direct comparison
+    $_SESSION['username'] = $username;
+            header("Location: seller-dashboard.php");
+            exit();
+        } else {
+            echo "<script>alert('Incorrect password.');</script>";
         }
-
-        $stmt->close();
-        $con->close();
+    } else {
+        echo "<script>alert('Username not found.');</script>";
     }
-}
+
+    $stmt->close();
+    $con->close();
+}}
 ?>
 
 
@@ -49,6 +48,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="utf-8" />
     <meta name="viewport" content="initial-scale=1, width=device-width" />
     <link rel="stylesheet" href="../styles/Login.css" />
+	<link rel="icon" type="image/x-icon" href="../assets/favicon.png">
+    <title>Heritage Link Login</title>
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;800;900&display=swap"/>

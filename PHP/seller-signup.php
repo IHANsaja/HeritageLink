@@ -3,7 +3,7 @@
 $servername = "localhost"; 
 $username = "root"; 
 $password = ""; 
-$dbname = "heritage_link";
+$dbname = "heritagelink";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);

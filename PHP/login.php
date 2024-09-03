@@ -26,7 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             
             if ($password === $data['password']) {  // Direct comparison
     $_SESSION['username'] = $username;
-            header("Location: ../index.html");
+            header("Location: ../index.php");
             exit();
         } else {
             echo "<script>alert('Incorrect password.');</script>";

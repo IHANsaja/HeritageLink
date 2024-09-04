@@ -1,15 +1,31 @@
+document.addEventListener('DOMContentLoaded', function() {
+    var today = new Date();
+    if (today.getDate() === 1) {
+        location.reload();
+    }
+});
+
+
 // Function to show a specific section and hide others
 function showSection(sectionId) {
+    console.log(`Attempting to show section: ${sectionId}`); // Log the section ID
+
     // Hide all sections
-    document.querySelectorAll('.content').forEach(section => {
-        section.style.display = 'none';
+    document.querySelectorAll('.content, .products-tab').forEach(section => {
+        section.style.display = 'none'; // Hide all sections
     });
 
     // Show the selected section
-    document.getElementById(sectionId).style.display = 'flex';
+    const selectedSection = document.getElementById(sectionId);
+    if (selectedSection) {
+        selectedSection.style.display = ''; // Use default display property set in CSS
+        console.log(`Section ${sectionId} is now visible.`);
+    } else {
+        console.error(`Section with ID ${sectionId} not found.`);
+    }
 }
 
-// Handle form submission
+// Handle form submission for adding products
 document.getElementById('add-product-form').addEventListener('submit', function(event) {
     event.preventDefault(); // Prevent the default form submission
 
@@ -47,11 +63,19 @@ document.getElementById('add-product-form').addEventListener('submit', function(
 
 // Set up click event listeners for menu links
 document.querySelectorAll('.menu-link').forEach(link => {
-    link.addEventListener('click', function() {
+    link.addEventListener('click', function(event) {
+        event.preventDefault(); // Prevent the default anchor behavior
+
+        // Get the ID of the section to show from the data attribute
         const sectionId = this.getAttribute('data-tab');
+
+        // Show the desired section and hide others
         showSection(sectionId);
     });
 });
 
-// Show the dashboard section by default
-showSection('dashboard');
+// Ensure the dashboard is displayed by default on page load
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('DOM fully loaded and parsed');
+    showSection('dashboard'); // Ensures the 'dashboard' section is shown on page load
+});

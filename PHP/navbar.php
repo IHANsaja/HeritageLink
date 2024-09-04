@@ -1,38 +1,57 @@
 <?php
-session_start(); // Start the session
+session_start(); // Start the session to access session variables
 
-// Mock user login check. Replace this with your actual authentication logic
-if (isset($_SESSION['user_id'])) {
-    // Assume you have a function to fetch the username based on user_id
-    $user_id = $_SESSION['user_id'];
-    $servername = "localhost";
-    $username = "root"; 
-    $password = ""; 
-    $dbname = "heritagelink"; 
+$servername = "localhost";
+$username = "root"; 
+$password = ""; 
+$dbname = "heritagelink";
 
-    $conn = mysqli_connect($servername, $username, $password, $dbname);
+$conn = mysqli_connect($servername, $username, $password, $dbname);
 
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
-
-    $sql = "SELECT username FROM sellers WHERE seller_id = $user_id"; // Modify this query if needed
-    $result = $conn->query($sql);
-
-    if ($result->num_rows > 0) {
-        $row = $result->fetch_assoc();
-        $username = htmlspecialchars($row['username']);
-        echo '<div class="user-profile">';
-        echo '<div class="username"><a href="PHP/sellerdashboard.php?seller_id=' . $user_id . '">' . $username . '</a></div>';
-        echo '</div>';
-    } else {
-        echo '<div class="login-btn"><a href="PHP/login.php"><button>LOGIN</button></a></div>';
-        echo '<div class="link-btn"><a href="PHP/signup.php"><button>LINK</button></a></div>';
-    }
-
-    $conn->close();
-} else {
-    echo '<div class="login-btn"><a href="PHP/login.php"><button>LOGIN</button></a></div>';
-    echo '<div class="link-btn"><a href="PHP/signup.php"><button>LINK</button></a></div>';
+// Check the connection
+if (!$conn) {
+    die('<div class="db-offline" id="db-status" title="Database is offline"><i class="ri-checkbox-circle-fill"></i><p>Offline</p></div>');
 }
+
+if (isset($_SESSION['seller_id'])) {
+    $seller_id = $_SESSION['seller_id'];
+    
+    // Prepare SQL statement
+    $sql = "SELECT username FROM Sellers WHERE seller_id = ?";
+    
+    if ($stmt = $conn->prepare($sql)) {
+        $stmt->bind_param("i", $seller_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if ($row = $result->fetch_assoc()) {
+            $seller_username = "<a class='sellDB' href='seller-dashboard.php'>" . htmlspecialchars($row['username']) . "</a>";
+            $logout_link = "<a href='PHP/logout.php' class='logout-btn'>Logout</a>";
+        } else {
+            $seller_username = "Guest"; // Default if no username found
+            $logout_link = "";
+        }
+        $stmt->close();
+    } else {
+        // Print SQL error
+        echo 'SQL Error: ' . htmlspecialchars(mysqli_error($conn));
+        $seller_username = "Guest";
+        $logout_link = "";
+    }
+} else {
+    $seller_username = ""; // Leave blank if not logged in
+    $logout_link = ""; // No logout link if not logged in
+}
+$conn->close();
 ?>
+
+<!-- Output the username or Guest -->
+<?php if ($seller_username): ?>
+    <span><?php echo $seller_username; ?></span>
+    <?php echo $logout_link; ?>
+<?php else: ?>
+    <div class="login">
+        <div class="login-btn"><a href="PHP/login.php"><button>LOGIN</button></a></div>
+        <div class="link-btn"><a href="PHP/signup.php"><button>LINK</button></a></div>
+    </div>
+<?php endif; ?>

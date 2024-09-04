@@ -24,23 +24,28 @@
 </head>
 <body>
   <div class="nav-bar">
-    <img src="assets/logoLarge.jpeg" alt="logo" class="logo">
-    <div class="brandname">
-        <h2>HerritageLink</h2>
-    </div>
-    <div class="nav-links">
-        <a href="index.html"><div class="home">HOME</div></a>
-        <a href="museum.html"><div class="museum">MUSEUM</div></a>
-        <a href="PHP/marketplace.php"><div class="market">MARKET</div></a>
-        <a href="https://en.wikipedia.org/wiki/List_of_World_Heritage_Sites_in_Sri_Lanka" target="_blank"><div class="protect">PROTECT</div></a>
-    </div>
-    <div class="login">
-      <?php include('PHP/navbar.php'); ?>
-    </div>
-    <div class="menu-toggle">
-        <i class="ri-menu-line"></i>
-    </div>
-</div>
+          <img src="assets/logoLarge.jpeg" alt="logo" class="logo">
+          <div class="nav-links">
+              <a href="index.php"><div class="home">HOME</div></a>
+              <a href="museum.html"><div class="museum">MUSEUM</div></a>
+              <a href="PHP/marketplace.php"><div class="market">MARKET</div></a>
+              <a href="https://en.wikipedia.org/wiki/List_of_World_Heritage_Sites_in_Sri_Lanka" target="_blank"><div class="protect">PROTECT</div></a>
+          </div>
+          <div class="login">
+              <?php
+              session_start();
+              if (isset($_SESSION['username'])) {
+                  // User is logged in
+                  echo "<div class='welcome'>Welcome, " . htmlspecialchars($_SESSION['username']) . "!</div>";
+                  echo "<a href='PHP/logout.php'><button>LOGOUT</button></a>";
+              } else {
+                  // User is not logged in
+                  echo '<div class="login-btn"><a href="PHP/login.php"><button>LOGIN</button></a></div>';
+                  echo '<div class="link-btn"><a href="PHP/signup.php"><button>LINK</button></a></div>';
+              }
+              ?>
+          </div>
+  </div>
 
 <div class="mobile-menu">
     <div class="close-menu">
@@ -53,7 +58,18 @@
         <div class="protect">PROTECT</div>
     </div>
     <div class="mobile-login">
-      <?php include('PHP/navbar.php'); ?>
+      <?php
+      session_start();
+      if (isset($_SESSION['username'])) {
+        // User is logged in
+        echo "<div class='welcome'>Welcome, " . htmlspecialchars($_SESSION['username']) . "!</div>";
+        echo "<a href='PHP/logout.php'><button>LOGOUT</button></a>";
+      } else {
+        // User is not logged in
+        echo '<div class="login-btn"><a href="PHP/login.php"><button>LOGIN</button></a></div>';
+        echo '<div class="link-btn"><a href="PHP/signup.php"><button>LINK</button></a></div>';
+      }
+      ?>
     </div>
 </div>
 

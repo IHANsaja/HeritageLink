@@ -110,8 +110,8 @@ if (isset($_GET['username'])) {
                 <button type="submit" style="border-radius: 5px;width:170px"onclick="window.location.href='Lg.php'">Back</button>
             </div>
             </div>
-              <a href="https://www.google.com"><img class="icons8-google-logo-48-11" alt="" style="left:960px; top: 550px;" src="../assets/google.png" /></a>
-            <a href="https://www.facebook.com"><img class="icons8-facebook-48-11" alt="" style="left:1010px; top: 550px;" src="../assets/facebook.png" /></a>
+              <a href="https://www.google.com"><img class="icons8-google-logo-48-11" alt="" style="left:980px; top: 570px;" src="../assets/google.png" /></a>
+            <a href="https://www.facebook.com"><img class="icons8-facebook-48-11" alt="" style="left:1030px; top: 570px;" src="../assets/facebook.png" /></a>
         </form>
     </div>
 

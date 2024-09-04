@@ -1,43 +1,47 @@
 <!------ user -login page------>
 
 <?php
+session_start(); // Start the session at the beginning of the script
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST['username'];
     $password = $_POST['password'];  // Get the password input
 
-    
+    // Database connection
     $con = new mysqli("localhost", "root", "", "heritagelink");
 
-    
     if ($con->connect_error) {
         die("Failed to connect: " . $con->connect_error);
     } else {
-        
+        // Prepare and bind the SQL statement
         $stmt = $con->prepare("SELECT * FROM customers WHERE username = ?");
         $stmt->bind_param("s", $username);
         $stmt->execute();
         $stmt_result = $stmt->get_result();
 
-        
         if ($stmt_result->num_rows > 0) {
-            
             $data = $stmt_result->fetch_assoc();
 
-            
-            if ($password === $data['password']) {  // Direct comparison
-    $_SESSION['username'] = $username;
-            header("Location: ../index.html");
-            exit();
-        } else {
-            echo "<script>alert('Incorrect password.');</script>";
-        }
-    } else {
-        echo "<script>alert('Username not found.');</script>";
-    }
+            // Direct comparison of passwords (consider using password hashing for security)
+            if ($password === $data['password']) {
+                // Set session variables
+                $_SESSION['seller_id'] = $data['seller_id']; // Assuming 'seller_id' is a column in your table
+                $_SESSION['username'] = $data['username'];
 
-    $stmt->close();
-    $con->close();
-}}
+                // Redirect to the seller dashboard
+                header("Location: ../index.php");
+                exit();
+            } else {
+                echo "<script>alert('Incorrect password.');</script>";
+            }
+        } else {
+            echo "<script>alert('Username not found.');</script>";
+        }
+
+        $stmt->close();
+        $con->close();
+    }
+}
 ?>
 
 

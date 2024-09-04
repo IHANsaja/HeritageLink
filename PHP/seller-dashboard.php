@@ -6,6 +6,7 @@
     <title>Heritage Link Seller Dashboard</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.2.0/remixicon.css">
     <link rel="stylesheet" href="../styles/styles-sellerDB.css">
+    <link rel="icon" type="image/x-icon" href="../assets/favicon.png">
     <script>
         function showMessage(message) {
             const messageDiv = document.getElementById('message');
@@ -48,14 +49,28 @@
             JOIN Order_Items oi ON o.order_id = oi.order_id 
             JOIN Products p ON oi.product_id = p.product_id
             WHERE p.seller_id = ? 
-              AND MONTH(o.created_at) = MONTH(CURDATE()) 
-              AND YEAR(o.created_at) = YEAR(CURDATE())
+            AND DATE_FORMAT(o.created_at, '%Y-%m') = DATE_FORMAT(CURDATE(), '%Y-%m')
         ");
         $revenue_query->bind_param("i", $seller_id);
         $revenue_query->execute();
         $revenue_result = $revenue_query->get_result();
         $revenue_data = $revenue_result->fetch_assoc();
         $monthly_revenue = $revenue_data['monthly_revenue'] ? $revenue_data['monthly_revenue'] : 0;
+
+        // Fetch annual revenue
+        $annual_revenue_query = $conn->prepare("
+            SELECT SUM(oi.price * oi.quantity) AS annual_revenue
+            FROM Orders o 
+            JOIN Order_Items oi ON o.order_id = oi.order_id 
+            JOIN Products p ON oi.product_id = p.product_id
+            WHERE p.seller_id = ? 
+            AND YEAR(o.created_at) = YEAR(CURDATE())
+        ");
+        $annual_revenue_query->bind_param("i", $seller_id);
+        $annual_revenue_query->execute();
+        $annual_revenue_result = $annual_revenue_query->get_result();
+        $annual_revenue_data = $annual_revenue_result->fetch_assoc();
+        $annual_revenue = $annual_revenue_data['annual_revenue'] ? $annual_revenue_data['annual_revenue'] : 0;
 
         // Fetch sales analysis
         $analysis_query = $conn->prepare("
@@ -64,8 +79,8 @@
             JOIN Order_Items oi ON o.order_id = oi.order_id 
             JOIN Products p ON oi.product_id = p.product_id
             WHERE p.seller_id = ? 
-              AND MONTH(o.created_at) = MONTH(CURDATE()) 
-              AND YEAR(o.created_at) = YEAR(CURDATE())
+            AND MONTH(o.created_at) = MONTH(CURDATE()) 
+            AND YEAR(o.created_at) = YEAR(CURDATE())
         ");
         $analysis_query->bind_param("i", $seller_id);
         $analysis_query->execute();
@@ -76,12 +91,14 @@
 
         // Close connections
         $revenue_query->close();
+        $annual_revenue_query->close();
         $analysis_query->close();
         $conn->close();
     } else {
         $seller_username = "Guest"; // If 'seller_id' is not set, show as Guest
     }
     ?>
+
 
     <div class="top-bar">
         <h2>HeritageLink <span>Seller</span></h2>
@@ -96,14 +113,14 @@
     <!-- Sidebar -->
     <div class="sidebar">
         <div class="menu">
-            <a href="#" class="menu-link" onclick="showSection('dashboard')">
+            <a href="#" class="menu-link" data-tab="dashboard">
                 <div class="item1">
                     <i class="ri-dashboard-horizontal-fill"></i>
                     <span class="menu-item">Dashboard</span>
                     <i class="ri-arrow-right-s-fill"></i>
                 </div>
             </a>
-            <a href="#" class="menu-link" onclick="showSection('products')">
+            <a href="#" class="menu-link" data-tab="products">
                 <div class="item2">
                     <i class="ri-box-1-fill"></i>
                     <span class="menu-item">Products</span>
@@ -117,14 +134,14 @@
                     <i class="ri-arrow-right-s-fill"></i>
                 </div>
             </a>
-            <a href="../museum.html">
+            <a href="museum.php">
                 <div class="item4">
                     <i class="ri-ancient-gate-fill"></i>
                     <span class="menu-item">Museum</span>
                     <i class="ri-arrow-right-s-fill"></i>
                 </div>
             </a>
-            <a href="../PHP/marketplace.php">
+            <a href="marketplace.php">
                 <div class="item5">
                     <i class="ri-store-fill"></i>
                     <span class="menu-item">Marketplace</span>
@@ -146,6 +163,10 @@
             <h3>Monthly Revenue</h3>
             <p>$<?php echo number_format($monthly_revenue, 2); ?></p>
         </div>
+        <div class="card large">
+            <h3>Annual Revenue</h3>
+            <p>$<?php echo number_format($annual_revenue, 2); ?></p>
+        </div>
         <div class="vert">
             <div class="card small1">
                 <h3>Total Sales</h3>
@@ -161,6 +182,7 @@
             </div>
         </div>
     </div>
+
 
     <!-- Products Section -->
     <div id="products" class="products-tab" style="display: none;">

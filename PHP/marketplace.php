@@ -9,6 +9,42 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 </head>
 <body>
+    <?php
+    session_start(); // Start the session at the top of the PHP script
+
+    // Database connection
+    $con = new mysqli("localhost", "root", "", "heritagelink");
+
+    if ($con->connect_error) {
+        die("Failed to connect: " . $con->connect_error);
+    }
+
+    // Initialize search query and results
+    $search_query = '';
+    $results = [];
+
+    // Handle the search form submission
+    if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['search_query'])) {
+        $search_query = trim($_POST['search_query']);
+        
+        // Prepare and execute the SQL statement
+        $stmt = $con->prepare("SELECT * FROM products WHERE product_name LIKE ?");
+        $search_term = "%" . $search_query . "%";
+        $stmt->bind_param("s", $search_term);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if ($result->num_rows > 0) {
+            $results = $result->fetch_all(MYSQLI_ASSOC);
+        } else {
+            $results = []; // No results found
+        }
+
+        $stmt->close();
+    }
+
+    $con->close();
+    ?>
     <header>
         <img src="../assets/logoLarge.jpeg" alt="logo" class="logo">
         <div class="nav-links">
@@ -18,41 +54,28 @@
             <a href="https://en.wikipedia.org/wiki/List_of_World_Heritage_Sites_in_Sri_Lanka" target="_blank"><div class="protect">PROTECT</div></a>
         </div>
         <div class="search-bar">
-            <input type="text" placeholder="Search product...">
-            <button><i class="fa-solid fa-magnifying-glass"></i><p>search</p></button>
+            <form method="POST" action="marketplace.php" class="search-form">
+                <input type="text" name="search_query" placeholder="Search product..." value="<?php echo htmlspecialchars($search_query); ?>">
+                <button type="submit"><i class="fa-solid fa-magnifying-glass"></i><p>search</p></button>
+            </form>
         </div>
         <div class="user-profile">
             <?php
-            $servername = "localhost";
-            $username = "root"; 
-            $password = ""; 
-            $dbname = "heritagelink"; 
-            
-            $conn = mysqli_connect($servername, $username, $password, $dbname);
-            
-            if (!$conn) {
-                die('<div class="db-offline" id="db-status" title="Database is offline"><i class="ri-checkbox-circle-fill"></i><p>Offline</p></div>');
-            }
-            session_start(); // Start the session to access session variables
-
-            if (isset($_SESSION['seller_id'])) {
-                $seller_id = $_SESSION['seller_id'];
-
-                // Query to get the seller's username
-                $sql = "SELECT username FROM Sellers WHERE seller_id = '$seller_id'";
-                $result = mysqli_query($conn, $sql);
-
-                // Fetch the result and display the username
-                if ($row = mysqli_fetch_assoc($result)) {
-                    $seller_username = "<a class='sellDB' href='seller-dashboard.php'>" . htmlspecialchars($row['username']) . "</a>";
-                } else {
-                    $seller_username = "Guest"; // Default if no username found
+            if (isset($_SESSION['username']) || isset($_SESSION['seller_username'])) {
+                if (isset($_SESSION['username'])) {
+                    // Normal user is logged in
+                    echo "<div class='welcome'>Welcome, " . htmlspecialchars($_SESSION['username']) . "!</div>";
                 }
+                if (isset($_SESSION['seller_username'])) {
+                    // Seller is logged in, make username clickable to go to the seller dashboard
+                    echo "Welcome, <a class='welcome' href='seller-dashboard.php'>" . htmlspecialchars($_SESSION['seller_username']) . "</a>";
+                }                
             } else {
-                $seller_username = "Guest"; // If 'seller_id' is not set, show as Guest
+                // No user is logged in
+                echo '<div class="login-btn"><a href="login.php"><button>LOGIN</button></a></div>';
+                echo '<div class="link-btn"><a href="signup.php"><button>LINK</button></a></div>';
             }
             ?>
-            <span><?php echo $seller_username; ?></span>
             <div class="icon">
                 <img src="../assets/seller-icon.png" alt="User">
             </div>
@@ -60,7 +83,31 @@
     </header>
     <main>
         <section class="product-list">
-            <?php include 'fetch_items.php'; ?>
+            <?php if (!empty($search_query)): ?>
+                <h2 class="searchhead">Search Results for "<?php echo htmlspecialchars($search_query); ?>"</h2>
+                <div class="product-list-search">
+                    <?php if (!empty($results)): ?>
+                        <?php foreach ($results as $product): ?>
+                            <div class="search-card">
+                                <img src="../assets/sigiriya1.jpg" alt="<?php echo htmlspecialchars($product['product_name']); ?>">
+                                <div class="search-info">
+                                    <h3><?php echo htmlspecialchars($product['product_name']); ?></h3>
+                                    <p><?php echo htmlspecialchars($product['description']); ?></p>
+                                    <p>Price: $<?php echo htmlspecialchars($product['price']); ?></p>
+                                    <div class="buttons">
+                                        <button>Buy</button>
+                                        <button>Cart</button>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+                    <?php else: ?>
+                        <p>No products found.</p>
+                    <?php endif; ?>
+                </div>
+            <?php else: ?>
+                <?php include 'fetch_items.php'; ?>
+            <?php endif; ?>
         </section>
     </main>
     <script>
@@ -75,7 +122,6 @@
             xhr.send();
         }
 
-        setInterval(loadItems, 10000); 
     </script>
 </body>
 </html>

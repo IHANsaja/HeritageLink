@@ -33,6 +33,42 @@ body {
   color: #E8D6CB !important;
 }
 
+.logout-btn {
+  background-color: #E8D6CB;
+  border: none;
+  color: #5D2E46;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 5px;
+  margin-left: 10px;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+}
+
+.logout-btn:hover {
+  background-color: #AD6A6C;
+  color: white;
+}
+
+.welcome {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+a.welcome {
+  margin-left: 5px;
+  text-decoration: none;
+  color: #E8D6CB;
+  padding: 10px;
+  border-radius: 8px;
+  background-color: #541E3A;
+}
+
+
 .logo {
   height: 55px;
   border-radius: 50%;

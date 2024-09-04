@@ -21,11 +21,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($stmt_result->num_rows > 0) {
             $data = $stmt_result->fetch_assoc();
 
-            // Direct comparison of passwords (consider using password hashing for security)
+            // Direct comparison of passwords (for simplicity; use password_hash() and password_verify() in production)
             if ($password === $data['password']) {
                 // Set session variables
                 $_SESSION['seller_id'] = $data['seller_id']; // Assuming 'seller_id' is a column in your table
-                $_SESSION['username'] = $data['username'];
+                $_SESSION['seller_username'] = $data['username']; // Set the session variable for the seller
 
                 // Redirect to the seller dashboard
                 header("Location: seller-dashboard.php");
@@ -42,7 +42,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 ?>
-
 
 
 

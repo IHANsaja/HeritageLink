@@ -4,33 +4,47 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="initial-scale=1, width=device-width" />
-    <link rel="stylesheet" href="styles/NavBar.css">
-    <link rel="stylesheet" href="styles/museum.css">
-    <link rel="stylesheet" href="styles/Footer.css">
+    <link rel="stylesheet" href="../styles/NavBar.css">
+    <link rel="stylesheet" href="../styles/museum.css">
+    <link rel="stylesheet" href="../styles/Footer.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;800;900&display=swap"/>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap"/>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;500;900&display=swap"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.2.0/remixicon.css">
-    <link rel="icon" type="image/x-icon" href="assets/favicon.png">
+    <link rel="icon" type="image/x-icon" href="../assets/favicon.png">
     <title>Heritage Link Museum</title>
 </head>
 
 <body>
 
     <div class="nav-bar">
-        <img src="assets/logoLarge.jpeg" alt="logo" class="logo">
+        <img src="../assets/logoLarge.jpeg" alt="logo" class="logo">
         <div class="brandname">
             <h2>HerritageLink</h2>
         </div>
         <div class="nav-links">
             <a href="../index.php"><div class="home">HOME</div></a>
             <a href="museum.php"><div class="museum">MUSEUM</div></a>
-            <a href="PHP/marketplace.php"><div class="market">MARKET</div></a>
+            <a href="marketplace.php"><div class="market">MARKET</div></a>
             <a href="https://en.wikipedia.org/wiki/List_of_World_Heritage_Sites_in_Sri_Lanka" target="_blank"><div class="protect">PROTECT</div></a>
         </div>
         <div class="login">
-            <div class="login-btn"><a href="login.php"><button>LOGIN</button></a></div>
-            <div class="link-btn"><a href="signup.php"><button>LINK</button></a></div>
+            <?php
+            session_start(); // Start the session at the beginning of the script
+            if (isset($_SESSION['seller_username'])) {
+                // Seller is logged in
+                echo "<div class='welcome'>Welcome, <a class='welcome' href='seller-dashboard.php'>" . htmlspecialchars($_SESSION['seller_username']) . "</a></div>";
+                echo "<a href='logout.php'><button class='logout-btn'>LOGOUT</button></a>";
+            } elseif (isset($_SESSION['username'])) {
+                // Normal user is logged in
+                echo "<div class='welcome'>Welcome, " . htmlspecialchars($_SESSION['username']) . "!</div>";
+                echo "<a href='logout.php'><button class='logout-btn'>LOGOUT</button></a>";
+            } else {
+                // No user is logged in
+                echo '<div class="login-btn"><a href="login.php"><button>LOGIN</button></a></div>';
+                echo '<div class="link-btn"><a href="signup.php"><button>LINK</button></a></div>';
+            }
+            ?>
         </div>
         <div class="menu-toggle">
             <i class="ri-menu-line"></i>
@@ -48,8 +62,18 @@
             <div class="protect">PROTECT</div>
         </div>
         <div class="mobile-login">
-            <div class="login-btn"><a href=""><button>LOGIN</button></a></div>
-            <div class="link-btn"><a href=""><button>LINK</button></a></div>
+            <?php
+            session_start();
+            if (isset($_SESSION['username'])) {
+                // User is logged in
+                echo "<div class='welcome'>Welcome, " . htmlspecialchars($_SESSION['username']) . "!</div>";
+                echo "<a href='PHP/logout.php'><button class='logout-btn'>LOGOUT</button></a>";
+            } else {
+                // User is not logged in
+                echo '<div class="login-btn"><a href="PHP/login.php"><button>LOGIN</button></a></div>';
+                echo '<div class="link-btn"><a href="PHP/signup.php"><button>LINK</button></a></div>';
+            }
+            ?>
         </div>
     </div>
 

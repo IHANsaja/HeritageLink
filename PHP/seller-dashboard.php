@@ -186,7 +186,7 @@
 
     <!-- Products Section -->
     <div id="products" class="products-tab" style="display: none;">
-        <h3>Manage Products</h3>
+        <h3 class="man">Manage Products</h3>
         
         <!-- Add Product Form -->
         <div class="add-product" id="add">
@@ -226,11 +226,11 @@
                             <p>Stock: {$row['stock']}</p>
                             <form method='POST' action='../PHP/delete_product.php'>
                                 <input type='hidden' name='product_id' value='{$row['product_id']}'>
-                                <button type='submit'>Delete</button>
+                                <button type='submit' class='delete-button'>Delete</button>
                             </form>
                             <form method='GET' action='../PHP/edit_product.php'>
                                 <input type='hidden' name='product_id' value='{$row['product_id']}'>
-                                <button type='submit'>Edit</button>
+                                <button type='submit' class='edit-button'>Edit</button>
                             </form>
                         </div>";
                     }
@@ -246,6 +246,7 @@
             $conn->close();
             ?>
         </div>
+
     </div>
 
 

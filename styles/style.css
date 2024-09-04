@@ -46,6 +46,7 @@ body {
   border-radius: 5px;
   margin-left: 10px;
   cursor: pointer;
+  transition: 0.3s ease-in-out;
 }
 
 .logout-btn:hover {
@@ -53,9 +54,21 @@ body {
   color: white;
 }
 
-.logout-container {
-  display: inline-block;
+.welcome {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+
+a.welcome {
+  margin-left: 5px;
+  text-decoration: none;
+  color: #E8D6CB;
+  padding: 10px;
+  border-radius: 8px;
+  background-color: #541E3A;
+}
+
 
 .logo {
   height: 55px;

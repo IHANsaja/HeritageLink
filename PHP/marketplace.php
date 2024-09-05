@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="../styles/marketstyles.css">
     <link rel="icon" type="image/x-icon" href="../assets/favicon.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <script src="../scripts/script.js"></script>
 </head>
 <body>
     <?php
@@ -72,8 +73,8 @@
                 }                
             } else {
                 // No user is logged in
-                echo '<div class="login-btn"><a href="login.php"><button>LOGIN</button></a></div>';
-                echo '<div class="link-btn"><a href="signup.php"><button>LINK</button></a></div>';
+                echo '<div class="login"><div class="login-btn"><a href="login.php"><button>LOGIN</button></a></div>';
+                echo '<div class="link-btn"><a href="signup.php"><button>LINK</button></a></div></div>';
             }
             ?>
             <div class="icon">
@@ -121,7 +122,50 @@
             }
             xhr.send();
         }
+        document.addEventListener('DOMContentLoaded', function () {
+        const loginButton = document.querySelector('.login-btn button');
+        const linkButton = document.querySelector('.link-btn button');
 
+        if (loginButton && linkButton) {
+            loginButton.addEventListener('mouseenter', function () {
+            loginButton.style.backgroundColor = '#AD6A6C';
+            loginButton.style.borderColor = '#AD6A6C';
+            loginButton.style.color = '#fff';
+            linkButton.style.backgroundColor = '#5D2E46';
+            linkButton.style.borderColor = '#AD6A6C';
+            linkButton.style.color = '#E8D6CB';
+        });
+
+        loginButton.addEventListener('mouseleave', function () {
+            loginButton.style.backgroundColor = '#5D2E46';
+            loginButton.style.borderColor = '#AD6A6C';
+            loginButton.style.color = '#E8D6CB';
+            linkButton.style.backgroundColor = '#AD6A6C';
+            linkButton.style.borderColor = '#AD6A6C';
+            linkButton.style.color = '#E8D6CB';
+        });
+
+        linkButton.addEventListener('mouseenter', function () {
+            loginButton.style.backgroundColor = '#AD6A6C';
+            loginButton.style.borderColor = '#AD6A6C';
+            loginButton.style.color = '#E8D6CB';
+            linkButton.style.backgroundColor = '#5D2E46';
+            linkButton.style.borderColor = '#AD6A6C';
+            linkButton.style.color = '#fff';
+        });
+
+        linkButton.addEventListener('mouseleave', function () {
+            loginButton.style.backgroundColor = '#5D2E46';
+            loginButton.style.borderColor = '#AD6A6C';
+            loginButton.style.color = '#E8D6CB';
+            linkButton.style.backgroundColor = '#AD6A6C';
+            linkButton.style.borderColor = '#AD6A6C';
+            linkButton.style.color = '#E8D6CB';
+        });
+        }});
+    
+        
     </script>
+    
 </body>
 </html>

@@ -191,6 +191,7 @@
     <div class="heritageconnect-sri-lanka">
         © 2024 HeritageLink Sri Lanka. All rights reserved.
     </div>
+    <script src="../scripts/script.js"></script>
 </body>
 
 </html>

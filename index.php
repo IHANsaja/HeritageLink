@@ -37,7 +37,7 @@
               if (isset($_SESSION['seller_username'])) {
                   // Seller is logged in
                   echo "<div class='welcome'>Welcome, <a class='welcome' href='PHP/seller-dashboard.php'>" . htmlspecialchars($_SESSION['seller_username']) . "</a></div>";
-                  echo "<a href='logout.php'><button class='logout-btn'>LOGOUT</button></a>";
+                  echo "<a href='PHP/logout.php'><button class='logout-btn'>LOGOUT</button></a>";
               } elseif (isset($_SESSION['username'])) {
                   // Normal user is logged in
                   echo "<div class='welcome'>Welcome, " . htmlspecialchars($_SESSION['username']) . "!</div>";
@@ -180,5 +180,6 @@
 <div class="heritageconnect-sri-lanka">
     © 2024 HeritageLink Sri Lanka. All rights reserved.
 </div>
+<script src="scripts/script.js"></script>
 </body>
 </html>

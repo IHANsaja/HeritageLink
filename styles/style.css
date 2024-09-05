@@ -114,32 +114,25 @@ a.welcome {
   flex-direction: row;
 }
 
-.login .login-btn button {
-  height: 45px;
-  width: 100px;
-  border: 3px solid #AD6A6C;
-  background-color: #5D2E46;
-  color: #E8D6CB;
-  font-size: 15px;
-  font-weight: 600;
-  border-radius: 8px 0px 0px 8px;
-  cursor: pointer;
-  transition: 0.5s ease-in-out;
-}
-
-.login .login-btn button:hover {
-  border: none;
-  background-color: #AD6A6C;
-}
-
+.login .login-btn button,
 .login .link-btn button {
   height: 45px;
   width: 100px;
-  border: none;
-  background-color: #AD6A6C;
   color: #E8D6CB;
   font-size: 15px;
   font-weight: 600;
+  cursor: pointer;
+  transition: 0.5s ease-in-out;
+  border: 3px solid #AD6A6C;
+}
+
+.login .login-btn button {
+  background-color: #5D2E46;
+  border-radius: 8px 0px 0px 8px;
+}
+
+.login .link-btn button {
+  background-color: #AD6A6C;
   border-radius: 0px 8px 8px 0px;
 }
 

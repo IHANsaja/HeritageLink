@@ -76,7 +76,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="login-child"></div>
         <form action="Login.php"method="POST">
             <div class="herritage-link2" style="left:750px; top: 90px;">
-                <h1 style="color:#541E3A; text-align: right;">Herritage Link</h1>
+                <h1 style="color:#541E3A; text-align: right;">Heritage Link</h1>
             </div>
             <div class="login5" style="left:910px; top: 130px;">
                 <h2 style="color:#AD6A6C;text-align: right;">Login</h2>
@@ -116,9 +116,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
            <a href="https://www.google.com"> <img class="icons8-google-logo-48-11" alt="" style="left:638px; top: 400px;" src="../assets/google.png"  /> </a>
           <a href="https://www.facebook.com">  <img class="icons8-facebook-48-11" alt="" style="left:705px; top: 400px;" src="../assets/facebook.png" /><a href="www.facebook.com"></a>
             <div class="if-you-dont" style="left:630px; top: 470px;">
-             <pre style="font-family:poppins; font-size:14px;">
+             <p style="font-family:poppins; font-size:12px;">
 If you don’t have an account, 
-please register here.<pre>
+please register here.</p>
             </div>
         </form>
 		

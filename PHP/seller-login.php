@@ -1,18 +1,18 @@
 <!------ seller -login page)------>
 <?php
-session_start(); // Start the session at the beginning of the script
+session_start(); 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST['username'];
-    $password = $_POST['password'];  // Get the password input
+    $password = $_POST['password']; 
 
-    // Database connection
+    
     $con = new mysqli("localhost", "root", "", "heritagelink");
 
     if ($con->connect_error) {
         die("Failed to connect: " . $con->connect_error);
     } else {
-        // Prepare and bind the SQL statement
+
         $stmt = $con->prepare("SELECT * FROM sellers WHERE username = ?");
         $stmt->bind_param("s", $username);
         $stmt->execute();
@@ -21,13 +21,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($stmt_result->num_rows > 0) {
             $data = $stmt_result->fetch_assoc();
 
-            // Direct comparison of passwords (for simplicity; use password_hash() and password_verify() in production)
+            // Check password 
             if ($password === $data['password']) {
                 // Set session variables
                 $_SESSION['seller_id'] = $data['seller_id']; // Assuming 'seller_id' is a column in your table
                 $_SESSION['seller_username'] = $data['username']; // Set the session variable for the seller
 
-                // Redirect to the seller dashboard
                 header("Location: seller-dashboard.php");
                 exit();
             } else {
@@ -80,7 +79,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="login-child"></div>
         <form action=" seller-login.php"method="POST">
             <div class="herritage-link2" style="left:750px; top: 90px;">
-                <h1 style="color:#541E3A; text-align: right;">Herritage Link</h1>
+                <h1 style="color:#541E3A; text-align: right;">Heritage Link</h1>
             </div>
             <div class="login5" style="left:910px; top: 130px;">
                 <h2 style="color:#AD6A6C;text-align: right;">Login</h2>
@@ -117,7 +116,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
            <a href="https://www.google.com"> <img class="icons8-google-logo-48-11" alt="" style="left:638px; top: 400px;" src="../assets/google.png"  /> </a>
           <a href="https://www.facebook.com">  <img class="icons8-facebook-48-11" alt="" style="left:705px; top: 400px;" src="../assets/facebook.png" /><a href="www.facebook.com"/></a>
-            <div class="if-you-dont" style="left:630px; top: 470px;">
+            <div class="if-you-dont" style="left:630px; top: 482px;font-family:poppins; font-size:12px;">
                 If you don’t have an account, please register here.
             </div>
         </form>

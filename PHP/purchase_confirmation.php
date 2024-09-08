@@ -4,10 +4,8 @@ $username = "root";
 $password = "";
 $dbname = "heritagelink";
 
-// Create connection
 $conn = mysqli_connect($servername, $username, $password, $dbname);
 
-// Check connection
 if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
@@ -16,7 +14,6 @@ if (!$conn) {
 if (isset($_POST['product_id'])) {
     $product_id = intval($_POST['product_id']);
 
-    // Prepare and execute the SQL statement to decrease the stock quantity
     $update_stock_query = "UPDATE Products SET stock = stock - 1 WHERE product_id = $product_id";
     if ($conn->query($update_stock_query) === TRUE) {
         echo "";
@@ -27,7 +24,6 @@ if (isset($_POST['product_id'])) {
     echo "Invalid product ID.";
 }
 
-// Close the database connection
 $conn->close();
 ?>
 

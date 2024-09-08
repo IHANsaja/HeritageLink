@@ -1,19 +1,16 @@
 <?php
-// Database configuration
+
 $servername = "localhost"; 
 $username = "root"; 
 $password = ""; 
 $dbname = "heritagelink";
 
-// Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
 
-// Check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Initialize variables
 $reg_error = "";
 $reg_success = "";
 
@@ -29,19 +26,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $address = $_POST['address'];
     $full_name = $first_name . ' ' . $last_name;
 
-    // Validate email format
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $reg_error = "Please enter a valid email!";
     }
-    // Validate contact number length
+    
     elseif (strlen($contact_number) < 10) {
         $reg_error = "Please enter a valid Phone Number!";
     }
-    // Validate passwords
+    
     elseif ($pass !== $confirm_pass) {
         $reg_error = "Passwords do not match!";
     } else {
-        // Check if username is taken
+        
         $stmt = $conn->prepare("SELECT customer_id FROM Customers WHERE username = ?");
         if ($stmt === false) {
             die("MySQL prepare statement error: " . $conn->error);
@@ -52,17 +48,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($stmt->num_rows > 0) {
             $reg_error = "Username is already taken!";
         } else {
-            // Use plain password directly
+            
             $plain_password = $pass;
 
-            // Insert into Customers table
             $stmt = $conn->prepare("INSERT INTO Customers (username, email, password, full_name, contact_number, address) VALUES (?, ?, ?, ?, ?, ?)");
             if ($stmt === false) {
                 die("MySQL prepare statement error: " . $conn->error);
             }
             $stmt->bind_param("ssssss", $user, $email, $plain_password, $full_name, $contact_number, $address);
 
-            // Execute and check if the statement was successful
             if ($stmt->execute()) {
                 $reg_success = "Registration successful! You can now log in.";
                 // Redirect to login page
@@ -104,7 +98,6 @@ $conn->close();
         <?php if ($reg_success): ?>
             <p class="success"><?php echo $reg_success; ?></p>
         <?php endif; ?>
-        <!--form-->
         <form id="regForm" action="" method="POST">
             <!-- Tab 1 -->
             <div class="tab">
@@ -121,6 +114,7 @@ $conn->close();
                     <input type="password" id="confirm_password" name="confirm_password" required>
                 </div>
             </div>
+
             <!-- Tab 2 -->
             <div class="tab">
                 <div class="form-group">
@@ -132,6 +126,7 @@ $conn->close();
                     <input type="text" id="last_name" name="last_name" required>
                 </div>
             </div>
+
             <!-- Tab 3 -->
             <div class="tab">
                 <div class="form-group">
@@ -147,6 +142,7 @@ $conn->close();
                     <input type="text" id="address" name="address" required>
                 </div>
             </div>
+
             <!-- Navigation and Submit Buttons -->
             <div class="pagination-dots">
                 <span class="dot" onclick="showTab(0)"></span>
@@ -174,6 +170,7 @@ $conn->close();
     </div>
 </div>
 <script>
+
     // Form Navigation
     var currentTab = 0;
     showTab(currentTab);
@@ -200,22 +197,14 @@ $conn->close();
     function nextPrev(n) {
         var x = document.getElementsByClassName("tab");
         
-        // Exit if any invalid input
         if (n === 1 && !validateForm()) return false;
-        
-        // Hide current tab
         x[currentTab].style.display = "none";
-        
-        // Change current tab
         currentTab += n;
-        
-        // If finished, submit form
         if (currentTab >= x.length) {
             document.getElementById("regForm").submit();
             return false;
         }
         
-        // Otherwise, show correct tab
         showTab(currentTab);
     }
 

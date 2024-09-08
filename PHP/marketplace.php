@@ -11,9 +11,8 @@
 </head>
 <body>
     <?php
-    session_start(); // Start the session at the top of the PHP script
+    session_start(); 
 
-    // Database connection
     $con = new mysqli("localhost", "root", "", "heritagelink");
 
     if ($con->connect_error) {
@@ -28,7 +27,6 @@
     if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['search_query'])) {
         $search_query = trim($_POST['search_query']);
         
-        // Prepare and execute the SQL statement
         $stmt = $con->prepare("SELECT * FROM products WHERE product_name LIKE ?");
         $search_term = "%" . $search_query . "%";
         $stmt->bind_param("s", $search_term);
@@ -38,7 +36,7 @@
         if ($result->num_rows > 0) {
             $results = $result->fetch_all(MYSQLI_ASSOC);
         } else {
-            $results = []; // No results found
+            $results = []; 
         }
 
         $stmt->close();
@@ -64,14 +62,17 @@
             <?php
             if (isset($_SESSION['username']) || isset($_SESSION['seller_username'])) {
                 if (isset($_SESSION['username'])) {
+
                     // Normal user is logged in
                     echo "<div class='welcome'>Welcome, " . htmlspecialchars($_SESSION['username']) . "!</div>";
                 }
                 if (isset($_SESSION['seller_username'])) {
+
                     // Seller is logged in, make username clickable to go to the seller dashboard
                     echo "Welcome, <a class='welcome' href='seller-dashboard.php'>" . htmlspecialchars($_SESSION['seller_username']) . "</a>";
                 }                
             } else {
+                
                 // No user is logged in
                 echo '<div class="login"><div class="login-btn"><a href="login.php"><button>LOGIN</button></a></div>';
                 echo '<div class="link-btn"><a href="signup.php"><button>LINK</button></a></div></div>';

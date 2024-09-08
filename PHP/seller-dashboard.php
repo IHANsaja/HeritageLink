@@ -26,7 +26,7 @@
     <!-- Header / Top Bar -->
     <?php
     include 'config.php';
-    session_start(); // Start the session to access session variables
+    session_start(); 
 
     if (isset($_SESSION['seller_id'])) {
         $seller_id = $_SESSION['seller_id'];
@@ -39,7 +39,7 @@
         if ($row = mysqli_fetch_assoc($result)) {
             $seller_username = htmlspecialchars($row['username']);
         } else {
-            $seller_username = "Guest"; // Default if no username found
+            $seller_username = "Guest";
         }
 
         // Fetch monthly revenue
@@ -98,7 +98,7 @@
         $analysis_query->close();
         $conn->close();
     } else {
-        $seller_username = "Guest"; // If 'seller_id' is not set, show as Guest
+        $seller_username = "Guest"; 
     }
     ?>
 
@@ -210,14 +210,13 @@
         <!-- List of Products -->
         <div id="product-list">
             <?php
-            require 'config.php'; // Ensure this includes the correct database connection
+            require 'config.php'; 
 
-            $seller_id = $_SESSION['seller_id']; // Get the actual seller ID from the session
+            $seller_id = $_SESSION['seller_id']; 
 
-            // Prepare SQL statement
             $query = "SELECT * FROM Products WHERE seller_id = ?";
             if ($stmt = $conn->prepare($query)) {
-                $stmt->bind_param("i", $seller_id); // Bind parameters
+                $stmt->bind_param("i", $seller_id); 
                 $stmt->execute();
                 $result = $stmt->get_result();
 

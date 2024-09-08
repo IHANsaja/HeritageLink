@@ -1,5 +1,5 @@
 <?php
-// Database connection
+
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -7,27 +7,25 @@ $dbname = "HeritageLink";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
-// Check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
 // Check if form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['update_product'])) {
-    // Retrieve form data
+    
     $product_id = $_POST['product_id'];
     $product_name = $_POST['product_name'];
     $description = $_POST['description'];
     $price = $_POST['price'];
     $stock = $_POST['stock'];
     
-    // Update product query
     $sql = "UPDATE Products SET product_name=?, description=?, price=?, stock=? WHERE product_id=?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("ssdii", $product_name, $description, $price, $stock, $product_id);
 
     if ($stmt->execute()) {
-        header("Location: seller-dashboard.php"); // Redirect to seller dashboard
+        header("Location: seller-dashboard.php"); 
         exit();
     } else {
         echo "Error updating record: " . $conn->error;

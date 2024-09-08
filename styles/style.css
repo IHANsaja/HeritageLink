@@ -250,22 +250,15 @@ a.welcome {
     left: 20px;
   }
 }
-/* ------------------------------------------------container------------------------------------------------ */
 
-
-
-/* ------------------------------------------------box1------------------------------------------------ */
-
-/* Base styles */
-/* General Styling */
 .box1 {
   width: 100%;
-  min-height: 40vh; /* Use viewport height for flexibility */
+  min-height: 40vh; 
   background-color: #AD6A6C;
   display: flex;
   justify-content: center;
   color: white;
-  padding: 2% 0; /* Add padding for better spacing */
+  padding: 2% 0; 
 }
 
 .box1 .about {
@@ -274,14 +267,14 @@ a.welcome {
 }
 
 .box1 img {
-  max-width: 80%; /* Make the image responsive */
+  max-width: 80%; 
   height: auto;
-  margin-left: 20%; /* Adjust margin to keep image centered */
+  margin-left: 20%; 
   margin-top: 1%;
 }
 
 .who-we-are h1 {
-  font-size: 3rem; /* Use rem units for scalable text */
+  font-size: 3rem; 
   margin-bottom: 2%;
   margin-top: 3%;
 }
@@ -295,12 +288,11 @@ a.welcome {
   text-align-last: left;
 }
 
-/* General Styling */
 .box2 {
   width: 100%;
-  min-height: 60vh; /* Flexible height */
+  min-height: 60vh; 
   background-color: #ffffff;
-  padding: 2% 0; /* Add padding for spacing */
+  padding: 2% 0; 
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -310,7 +302,6 @@ a.welcome {
   color:#AD6A6C ;
 }
 
-/* Image and description container */
 .image-text-container {
   display: flex;
   width: 90%;
@@ -319,7 +310,6 @@ a.welcome {
   align-items: center;
 }
 
-/* Image styles */
 .sigiriya, .yapahuwa {
   width: 35%;
   height: auto;
@@ -329,8 +319,6 @@ a.welcome {
   
 }
 
-
-/* Description styles */
 .sigiriya-dis {
   width: 55%;
   font-weight: 600;
@@ -353,18 +341,17 @@ a.welcome {
   
 }
 
-/* Button styles */
 .attention {
-  font-size: 2.5rem; /* Scalable font size */
+  font-size: 2.5rem; 
   font-weight: 800;
-  margin: 2% auto; /* Center buttons */
+  margin: 2% auto; 
   text-align: center;
   display: block;
 }
 
 .more {
   position: relative;
-  font-size: 2.5rem; /* Scalable font size */
+  font-size: 2.5rem; 
   margin: -10%;
   font-weight: 800;
   margin-left: 50%;
@@ -375,7 +362,7 @@ a.welcome {
 
 .more1 {
   position: relative;
-  font-size: 2.5rem; /* Scalable font size */
+  font-size: 2.5rem; 
   font-weight: 800;
   margin: -7%;
   text-align: center;
@@ -401,86 +388,79 @@ a.welcome {
   cursor: pointer;
 }
 
-
-/* General Styling for Mobile (768px and below) */
 @media (max-width: 768px) {
   .box1 {
-    padding: 5% 0; /* Increase padding for mobile */
-    min-height: auto; /* Let the height adjust naturally */
+    padding: 5% 0;
+    min-height: auto; 
   }
 
   .box1 .about {
-    width: 90%; /* Adjust the width for mobile */
+    width: 90%;
   }
 
   .box1 img {
-    max-width: 90%; /* Make sure the image takes up more space */
-    margin-left: 5%; /* Center the image on mobile */
+    max-width: 90%; 
+    margin-left: 5%; 
     margin-top: 2%;
   }
 
   .who-we-are h1 {
-    font-size: 2.5rem; /* Scale down the font size */
+    font-size: 2.5rem;
     margin-top: 5%;
   }
 
   .dis p {
-    font-size: 1.2rem; /* Adjust text size for readability on mobile */
+    font-size: 1.2rem;
   }
 
   .box2 {
-    padding: 5% 0; /* Add more padding for a better layout on mobile */
+    padding: 5% 0;
   }
 
   .image-text-container {
-    flex-direction: column; /* Stack images and text vertically */
-    align-items: center; /* Center content */
+    flex-direction: column; 
+    align-items: center; 
     width: 100%;
     margin: 5% 0;
   }
 
   .sigiriya, .yapahuwa {
-    width: 90%; /* Make images take up more space */
-    margin-bottom: 5%; /* Add space between image and text */
+    width: 90%; 
+    margin-bottom: 5%; 
     order: 1;
   }
 
   .sigiriya-dis, .yapahuwa-dis {
-    width: 90%; /* Ensure text takes up full width */
-    margin: 0 auto 0; /* Center text on mobile and add margin below */
-    text-align: center; /* Center text for better readability */
-    font-size: 1rem; /* Adjust text size */
+    width: 90%; 
+    margin: 0 auto 0; 
+    text-align: center; 
+    font-size: 1rem; 
     order: 2;
   }
 
-  /* Button styles */
   .attention, .more1, .more {
-    font-size: 2rem; /* Scale down button font size */
-    margin: 5% auto; /* Center and add space around the button */
+    font-size: 2rem;
+    margin: 5% auto; 
     text-align: center;
   }
 
   .more {
-    margin-left: auto; /* Center button */
+    margin-left: auto; 
     margin-right: auto;
     margin-top: 5%;
   }
 
   .more1 {
-    margin-left: auto; /* Center button */
+    margin-left: auto; 
     margin-right: auto;
     margin-top: 5%;
   }
 
   .more1 button, .more button {
-    padding: 10% 40%; /* Reduce padding for mobile buttons */
-    font-size: 1.2rem; /* Adjust button text size */
+    padding: 10% 40%; 
+    font-size: 1.2rem; 
   }
 }
-
-
-
-/* ---------------------------------------------footer------------------------------------------------------------ */
 
 .footer {
   width: 100%;

@@ -1,11 +1,11 @@
 <!------ user -login page------>
 
 <?php
-session_start(); // Start the session at the beginning of the script
+session_start(); 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST['username'];
-    $password = $_POST['password'];  // Get the password input
+    $password = $_POST['password'];  
 
     // Database connection
     $con = new mysqli("localhost", "root", "", "heritagelink");
@@ -13,7 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($con->connect_error) {
         die("Failed to connect: " . $con->connect_error);
     } else {
-        // Prepare and bind the SQL statement
+
         $stmt = $con->prepare("SELECT * FROM customers WHERE username = ?");
         $stmt->bind_param("s", $username);
         $stmt->execute();
@@ -22,13 +22,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($stmt_result->num_rows > 0) {
             $data = $stmt_result->fetch_assoc();
 
-            // Direct comparison of passwords (consider using password hashing for security)
+            // Check password
             if ($password === $data['password']) {
                 // Set session variables
                 $_SESSION['seller_id'] = $data['seller_id']; // Assuming 'seller_id' is a column in your table
                 $_SESSION['username'] = $data['username'];
 
-                // Redirect to the seller dashboard
                 header("Location: ../index.php");
                 exit();
             } else {

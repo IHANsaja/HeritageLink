@@ -116,7 +116,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
            <a href="https://www.google.com"> <img class="icons8-google-logo-48-11" alt="" style="left:638px; top: 400px;" src="../assets/google.png"  /> </a>
           <a href="https://www.facebook.com">  <img class="icons8-facebook-48-11" alt="" style="left:705px; top: 400px;" src="../assets/facebook.png" /><a href="www.facebook.com"/></a>
-            <div class="if-you-dont" style="left:630px; top: 470px;">
+            <div class="if-you-dont" style="left:630px; top: 482px;font-family:poppins; font-size:12px;">
                 If you don’t have an account, please register here.
             </div>
         </form>

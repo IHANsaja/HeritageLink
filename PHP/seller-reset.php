@@ -10,7 +10,7 @@ if (isset($_GET['username'])) {
 
         if ($password === $confirm_password) {
             
-            $con = new mysqli("localhost", "root", "", "heritage_link");
+            $con = new mysqli("localhost", "root", "", "heritagelink");
 
             
             if ($con->connect_error) {
@@ -58,7 +58,9 @@ if (isset($_GET['username'])) {
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="initial-scale=1, width=device-width" />
-    <link rel="stylesheet" href="./Login.css" />
+    <link rel="stylesheet" href="../styles/Login.css" />
+	<link rel="icon" type="image/x-icon" href="../assets/favicon.png">
+    <title>Heritage Link Login</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;800;900&display=swap" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;500;900&display=swap" />
@@ -69,7 +71,7 @@ if (isset($_GET['username'])) {
     <div class="login">
 	
 	<video width="100%"  autoplay muted playsinline loop>
-      <source src="./assets/tea2.mov" type="video/mp4">
+      <source src="../assets/tea2.mov" type="video/mp4">
      </video>
 
      
@@ -81,6 +83,7 @@ if (isset($_GET['username'])) {
             <div class="login5" style="left:780px; top: 130px;">
                 <h2 style="color:#bc8f8f;text-align: right;">Reset password</h2>
             </div>
+			
             <div class="login-child5" style="top: 30px;">
                 <button id="sellerTab"class="active" style="border-radius: 4px;" class="active"onclick="window.location.href='seller-reset.php'">SELLER</button>
                 <button id="userTab"  style="left:740px; border-radius: 4px;"onclick="window.location.href='reset.php'">USER</button>
@@ -101,11 +104,12 @@ if (isset($_GET['username'])) {
                  <button type="submit" style="border-radius: 5px;width:170px">Reset Password</button>
             </div>
             <div class="login-child52" style="left:620px; top: 400px; width:200px">
-                <button type="submit" style="border-radius: 5px;width:170px"onclick="window.location.href='login.php'">Back</button>
+                <button type="submit" style="border-radius: 5px;width:170px"onclick="window.location.href='seller-lg.php'">Back</button>
             </div>
             </div>
-            <a href="https://www.google.com"><img class="icons8-google-logo-48-11" alt="" style="left:920px; top: 530px;" src="./assets/google.png" /></a>
-            <a href="https://www.facebook.com"><img class="icons8-facebook-48-11" alt="" style="left:970px; top: 530px;" src="./assets/facebook.png" /></a>
+            <a href="https://www.google.com"><img class="icons8-google-logo-48-11" alt="" style="left:980px; top: 570px;" src="../assets/google.png" /></a>
+            <a href="https://www.facebook.com"><img class="icons8-facebook-48-11" alt="" style="left:1030px; top: 570px;" src="../assets/facebook.png" /></a>
+        
         </form>
     </div>
 

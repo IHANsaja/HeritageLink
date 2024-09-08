@@ -1,38 +1,40 @@
 <!------ seller -login page)------>
 <?php
+session_start(); // Start the session at the beginning of the script
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST['username'];
     $password = $_POST['password'];  // Get the password input
 
-   
-    $con = new mysqli("localhost", "root", "", "heritage_link");
+    // Database connection
+    $con = new mysqli("localhost", "root", "", "heritagelink");
 
-    
     if ($con->connect_error) {
         die("Failed to connect: " . $con->connect_error);
     } else {
-        
+        // Prepare and bind the SQL statement
         $stmt = $con->prepare("SELECT * FROM sellers WHERE username = ?");
         $stmt->bind_param("s", $username);
         $stmt->execute();
         $stmt_result = $stmt->get_result();
 
-   
         if ($stmt_result->num_rows > 0) {
-           
             $data = $stmt_result->fetch_assoc();
 
-           
-            if ($password === $data['password']) {  
-    echo "<script>alert('Login successful!');</script>";
-} else {
-    echo "<script>alert('Incorrect password.');</script>";
-}
+            // Direct comparison of passwords (for simplicity; use password_hash() and password_verify() in production)
+            if ($password === $data['password']) {
+                // Set session variables
+                $_SESSION['seller_id'] = $data['seller_id']; // Assuming 'seller_id' is a column in your table
+                $_SESSION['seller_username'] = $data['username']; // Set the session variable for the seller
 
+                // Redirect to the seller dashboard
+                header("Location: seller-dashboard.php");
+                exit();
+            } else {
+                echo "<script>alert('Incorrect password.');</script>";
+            }
         } else {
-            
-            echo "<script>alert('Incorrect username.');</script>";
+            echo "<script>alert('Username not found.');</script>";
         }
 
         $stmt->close();
@@ -49,6 +51,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="utf-8" />
     <meta name="viewport" content="initial-scale=1, width=device-width" />
     <link rel="stylesheet" href="../styles/Login.css" />
+	<link rel="icon" type="image/x-icon" href="../assets/favicon.png">
+    <title>Heritage Link Login</title>
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;800;900&display=swap"/>

@@ -49,3 +49,6 @@ CREATE TABLE Order_Items (
     FOREIGN KEY (order_id) REFERENCES Orders(order_id) ON DELETE CASCADE,
     FOREIGN KEY (product_id) REFERENCES Products(product_id) ON DELETE CASCADE
 );
+
+ALTER TABLE Products
+ADD COLUMN image_path VARCHAR(255) AFTER stock;

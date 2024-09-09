@@ -26,7 +26,7 @@
     <!-- Header / Top Bar -->
     <?php
     include 'config.php';
-    session_start(); // Start the session to access session variables
+    session_start(); 
 
     if (isset($_SESSION['seller_id'])) {
         $seller_id = $_SESSION['seller_id'];
@@ -39,17 +39,18 @@
         if ($row = mysqli_fetch_assoc($result)) {
             $seller_username = htmlspecialchars($row['username']);
         } else {
-            $seller_username = "Guest"; // Default if no username found
+            $seller_username = "Guest";
         }
 
         // Fetch monthly revenue
         $revenue_query = $conn->prepare("
-            SELECT SUM(oi.price * oi.quantity) AS monthly_revenue 
-            FROM Orders o 
-            JOIN Order_Items oi ON o.order_id = oi.order_id 
-            JOIN Products p ON oi.product_id = p.product_id
-            WHERE p.seller_id = ? 
-            AND DATE_FORMAT(o.created_at, '%Y-%m') = DATE_FORMAT(CURDATE(), '%Y-%m')
+        SELECT IFNULL(SUM(oi.price * oi.quantity), 0) AS monthly_revenue 
+        FROM Orders o 
+        JOIN Order_Items oi ON o.order_id = oi.order_id 
+        JOIN Products p ON oi.product_id = p.product_id
+        WHERE p.seller_id = ? 
+        AND o.status = 'completed'
+        AND DATE_FORMAT(o.created_at, '%Y-%m') = DATE_FORMAT(CURDATE(), '%Y-%m')
         ");
         $revenue_query->bind_param("i", $seller_id);
         $revenue_query->execute();
@@ -59,18 +60,20 @@
 
         // Fetch annual revenue
         $annual_revenue_query = $conn->prepare("
-            SELECT SUM(oi.price * oi.quantity) AS annual_revenue
-            FROM Orders o 
-            JOIN Order_Items oi ON o.order_id = oi.order_id 
-            JOIN Products p ON oi.product_id = p.product_id
-            WHERE p.seller_id = ? 
-            AND YEAR(o.created_at) = YEAR(CURDATE())
+        SELECT IFNULL(SUM(oi.price * oi.quantity), 0) AS annual_revenue
+        FROM Orders o 
+        JOIN Order_Items oi ON o.order_id = oi.order_id 
+        JOIN Products p ON oi.product_id = p.product_id
+        WHERE p.seller_id = ? 
+        AND o.status = 'completed'
+        AND YEAR(o.created_at) = YEAR(CURDATE())
         ");
         $annual_revenue_query->bind_param("i", $seller_id);
         $annual_revenue_query->execute();
         $annual_revenue_result = $annual_revenue_query->get_result();
         $annual_revenue_data = $annual_revenue_result->fetch_assoc();
         $annual_revenue = $annual_revenue_data['annual_revenue'] ? $annual_revenue_data['annual_revenue'] : 0;
+
 
         // Fetch sales analysis
         $analysis_query = $conn->prepare("
@@ -95,7 +98,7 @@
         $analysis_query->close();
         $conn->close();
     } else {
-        $seller_username = "Guest"; // If 'seller_id' is not set, show as Guest
+        $seller_username = "Guest"; 
     }
     ?>
 
@@ -186,17 +189,19 @@
 
     <!-- Products Section -->
     <div id="products" class="products-tab" style="display: none;">
-        <h3>Manage Products</h3>
+        <h3 class="man">Manage Products</h3>
         
         <!-- Add Product Form -->
         <div class="add-product" id="add">
             <h3>Add New Product</h3>
-            <form id="add-product-form" method="POST" action="../PHP/add_product.php">
+            <form id="add-product-form" method="POST" action="../PHP/add_product.php" enctype="multipart/form-data">
                 <input type="text" name="seller_id" placeholder="Your Seller ID" required>
                 <input type="text" name="product_name" placeholder="Product Name" required>
                 <textarea name="description" placeholder="Description"></textarea>
                 <input type="number" name="price" placeholder="Price" required>
                 <input type="number" name="stock" placeholder="Stock" required>
+                <!-- New input for image upload -->
+                <input type="file" name="product_image" accept="image/*" required>
                 <button type="submit" id="submit-btn">Add Product</button>
             </form>
         </div>
@@ -205,14 +210,13 @@
         <!-- List of Products -->
         <div id="product-list">
             <?php
-            require 'config.php'; // Ensure this includes the correct database connection
+            require 'config.php'; 
 
-            $seller_id = $_SESSION['seller_id']; // Get the actual seller ID from the session
+            $seller_id = $_SESSION['seller_id']; 
 
-            // Prepare SQL statement
             $query = "SELECT * FROM Products WHERE seller_id = ?";
             if ($stmt = $conn->prepare($query)) {
-                $stmt->bind_param("i", $seller_id); // Bind parameters
+                $stmt->bind_param("i", $seller_id); 
                 $stmt->execute();
                 $result = $stmt->get_result();
 
@@ -226,11 +230,11 @@
                             <p>Stock: {$row['stock']}</p>
                             <form method='POST' action='../PHP/delete_product.php'>
                                 <input type='hidden' name='product_id' value='{$row['product_id']}'>
-                                <button type='submit'>Delete</button>
+                                <button type='submit' class='delete-button'>Delete</button>
                             </form>
-                            <form method='GET' action='../PHP/edit_product.php'>
+                            <form method='GET' action='edit_product.php'>
                                 <input type='hidden' name='product_id' value='{$row['product_id']}'>
-                                <button type='submit'>Edit</button>
+                                <button type='submit' class='edit-button'>Edit</button>
                             </form>
                         </div>";
                     }
@@ -246,6 +250,7 @@
             $conn->close();
             ?>
         </div>
+
     </div>
 
 

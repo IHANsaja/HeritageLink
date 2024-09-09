@@ -4,7 +4,7 @@
 body {
     margin: 0;
     padding: 0;
-    min-height: 700px;
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -21,9 +21,10 @@ body {
     border-radius: 10px;
     overflow: hidden;
     max-width: 1050px;
-    width: 100%;
+    width: 70%;
     background-color: white;
-    min-height: 60vh;
+    height: 70vh;
+    max-height: 600px;
     display: flex;
 }
 

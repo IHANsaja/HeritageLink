@@ -27,19 +27,23 @@
           <img src="assets/logoLarge.jpeg" alt="logo" class="logo">
           <div class="nav-links">
               <a href="index.php"><div class="home">HOME</div></a>
-              <a href="museum.html"><div class="museum">MUSEUM</div></a>
+              <a href="PHP/museum.php"><div class="museum">MUSEUM</div></a>
               <a href="PHP/marketplace.php"><div class="market">MARKET</div></a>
               <a href="https://en.wikipedia.org/wiki/List_of_World_Heritage_Sites_in_Sri_Lanka" target="_blank"><div class="protect">PROTECT</div></a>
           </div>
           <div class="login">
-              <?php
-              session_start();
-              if (isset($_SESSION['username'])) {
-                  // User is logged in
+            <?php
+              session_start(); // Start the session at the beginning of the script
+              if (isset($_SESSION['seller_username'])) {
+                  // Seller is logged in
+                  echo "<div class='welcome'>Welcome, <a class='welcome' href='PHP/seller-dashboard.php'>" . htmlspecialchars($_SESSION['seller_username']) . "</a></div>";
+                  echo "<a href='PHP/logout.php'><button class='logout-btn'>LOGOUT</button></a>";
+              } elseif (isset($_SESSION['username'])) {
+                  // Normal user is logged in
                   echo "<div class='welcome'>Welcome, " . htmlspecialchars($_SESSION['username']) . "!</div>";
-                  echo "<a href='PHP/logout.php'><button>LOGOUT</button></a>";
+                  echo "<a href='PHP/logout.php'><button class='logout-btn'>LOGOUT</button></a>";
               } else {
-                  // User is not logged in
+                  // No user is logged in
                   echo '<div class="login-btn"><a href="PHP/login.php"><button>LOGIN</button></a></div>';
                   echo '<div class="link-btn"><a href="PHP/signup.php"><button>LINK</button></a></div>';
               }
@@ -52,10 +56,10 @@
         <i class="ri-close-line"></i>
     </div>
     <div class="mobile-nav-links">
-        <div class="home">HOME</div>
-        <div class="museum">MUSEUM</div>
-        <div class="market">MARKET</div>
-        <div class="protect">PROTECT</div>
+      <a href="index.php"><div class="home">HOME</div></a>
+      <a href="PHP/museum.php"><div class="museum">MUSEUM</div></a>
+      <a href="PHP/marketplace.php"><div class="market">MARKET</div></a>
+      <a href="https://en.wikipedia.org/wiki/List_of_World_Heritage_Sites_in_Sri_Lanka" target="_blank"><div class="protect">PROTECT</div></a>
     </div>
     <div class="mobile-login">
       <?php
@@ -156,16 +160,16 @@
   <div class="footer">
         
     <div class="home-parent">
-        <div class="home2">HOME</div>
-        <div class="museum2">MUSEUM</div>
-        <div class="marketplace1">MARKETPLACE</div>
-        <div class="contact-us">CONTACT US</div>
+      <a href="index.php"><div class="home">HOME</div></a>
+      <a href="PHP/museum.php"><div class="museum">MUSEUM</div></a>
+      <a href="PHP/marketplace.php"><div class="market">MARKET</div></a>
+      <a href="mailto:heritagelink@gmail.com" target="_blank"><div class="protect">CONTACT US</div></a>
     </div>
     <div class="socials">
-        <i class="ri-whatsapp-fill"></i>
-        <i class="ri-facebook-circle-fill"></i>
-        <i class="ri-youtube-fill"></i>
-        <i class="ri-instagram-fill"></i>
+        <a href="https://web.whatsapp.com/" target="_blank"><i class="ri-whatsapp-fill"></i></a>
+        <a href="https://www.facebook.com/" target="_blank"><i class="ri-facebook-circle-fill"></i></a>
+        <a href="https://www.youtube.com/" target="_blank"><i class="ri-youtube-fill"></i></a>
+        <a href="https://www.instagram.com/" target="_blank"><i class="ri-instagram-fill"></i></a>
     </div>
     <div class="heritage-map">
         <h3>HERITAGE MAP</h3>
@@ -176,5 +180,6 @@
 <div class="heritageconnect-sri-lanka">
     © 2024 HeritageLink Sri Lanka. All rights reserved.
 </div>
+<script src="scripts/script.js"></script>
 </body>
 </html>

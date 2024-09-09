@@ -65,7 +65,7 @@ if (isset($_POST['username'])) {
         <div class="login-child"></div>
         <form action="seller-lg.php"method="POST">
             <div class="herritage-link2" style="left:750px; top: 90px;">
-                <h1 style="color:#541E3A; text-align: right;">Herritage Link</h1>
+                <h1 style="color:#541E3A; text-align: right;">Heritage Link</h1>
             </div>
             <div class="login5" style="left:760px; top: 130px;">
                 <h2 style="color:#AD6A6C;text-align: right;">Find your account</h2>

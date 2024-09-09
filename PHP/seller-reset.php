@@ -78,7 +78,7 @@ if (isset($_GET['username'])) {
         <div class="login-child"></div>
         <form method="post">
             <div class="herritage-link2" style="left:750px; top: 90px;">
-                <h1 style="color:#7a3e3e; text-align: right;">Herritage Link</h1>
+                <h1 style="color:#7a3e3e; text-align: right;">Heritage Link</h1>
             </div>
             <div class="login5" style="left:780px; top: 130px;">
                 <h2 style="color:#bc8f8f;text-align: right;">Reset password</h2>

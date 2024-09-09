@@ -9,32 +9,26 @@ if (isset($_GET['username'])) {
         $confirm_password = $_POST['confirm_password'];
 
         if ($password === $confirm_password) {
-            
             $con = new mysqli("localhost", "root", "", "heritagelink");
 
-            
             if ($con->connect_error) {
                 die("Connection failed: " . $con->connect_error);
             }
 
-            
             $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-           
             $stmt = $con->prepare('UPDATE customers SET password = ? WHERE username = ?');
 
-         
             if ($stmt === false) {
                 die("Failed to prepare the SQL statement: " . $con->error);
             }
 
-            
-            $stmt->bind_param('ss', $password, $username);
+            $stmt->bind_param('ss', $hashed_password, $username);
 
-      
             if ($stmt->execute()) {
                 if ($stmt->affected_rows > 0) {
                     echo "<script>alert('Password reset successfully');</script>";
+                    echo "<script>window.location.href = 'login.php';</script>";
                 } else {
                     echo "<script>alert('No changes made or password was not updated');</script>";
                 }
@@ -42,7 +36,6 @@ if (isset($_GET['username'])) {
                 echo "<script>alert('Error executing the SQL statement: " . $stmt->error . "');</script>";
             }
 
-            
             $stmt->close();
             $con->close();
         } else {
@@ -51,7 +44,6 @@ if (isset($_GET['username'])) {
     }
 }
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">

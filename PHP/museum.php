@@ -171,16 +171,16 @@
     <div class="footer">
         
         <div class="home-parent">
-            <a href="index.php"><div class="home">HOME</div></a>
-            <a href="PHP/museum.php"><div class="museum">MUSEUM</div></a>
-            <a href="PHP/marketplace.php"><div class="market">MARKET</div></a>
-            <a href="mailto:heritagelink@gmail.com" target="_blank"><div class="protect">CONTACT US</div></a>
+            <div class="home2">Home</div>
+            <div class="museum2">MUSEUM</div>
+            <div class="marketplace1">MARKETPLACE</div>
+            <div class="contact-us">CONTACT US</div>
         </div>
         <div class="socials">
-            <a href="https://web.whatsapp.com/" target="_blank"><i class="ri-whatsapp-fill"></i></a>
-            <a href="https://www.facebook.com/" target="_blank"><i class="ri-facebook-circle-fill"></i></a>
-            <a href="https://www.youtube.com/" target="_blank"><i class="ri-youtube-fill"></i></a>
-            <a href="https://www.instagram.com/" target="_blank"><i class="ri-instagram-fill"></i></a>
+            <i class="ri-whatsapp-fill"></i>
+            <i class="ri-facebook-circle-fill"></i>
+            <i class="ri-youtube-fill"></i>
+            <i class="ri-instagram-fill"></i>
         </div>
         <div class="heritage-map">
             <h3>HERITAGE MAP</h3>

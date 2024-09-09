@@ -1,4 +1,3 @@
-//hovering effect for the login and link buttons
 document.addEventListener('DOMContentLoaded', function () {
   const loginButton = document.querySelector('.login .login-btn button');
   const linkButton = document.querySelector('.login .link-btn button');

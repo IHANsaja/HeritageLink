@@ -123,14 +123,14 @@ if (isset($_POST['username'])) {
                 event.preventDefault();
                 sellerTab.classList.add('active');
                 userTab.classList.remove('active');
-                form.setAttribute('action', 'sellerLogin.php'); // Set the action for the SELLER
+                form.setAttribute('action', 'sellerLogin.php'); 
             });
 
             userTab.addEventListener('click', (event) => {
                 event.preventDefault();
                 userTab.classList.add('active');
                 sellerTab.classList.remove('active');
-                form.setAttribute('action', 'lg.php'); // Set the action for the USER
+                form.setAttribute('action', 'lg.php'); 
             });
         });
     </script>

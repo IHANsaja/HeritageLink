@@ -10,7 +10,6 @@ if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
-// Assuming you have the customer ID stored in the session
 $customer_id = isset($_SESSION['customer_id']) ;
 
 // Fetch products from database

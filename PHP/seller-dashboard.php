@@ -30,12 +30,8 @@
 
     if (isset($_SESSION['seller_id'])) {
         $seller_id = $_SESSION['seller_id'];
-
-        // Query to get the seller's username
         $sql = "SELECT username FROM Sellers WHERE seller_id = '$seller_id'";
         $result = mysqli_query($conn, $sql);
-
-        // Fetch the result and display the username
         if ($row = mysqli_fetch_assoc($result)) {
             $seller_username = htmlspecialchars($row['username']);
         } else {

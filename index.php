@@ -33,13 +33,13 @@
           </div>
           <div class="login">
             <?php
-              session_start(); // Start the session at the beginning of the script
+              session_start();
               if (isset($_SESSION['seller_username'])) {
-                  // Seller is logged in
+                  // Seller
                   echo "<div class='welcome'>Welcome, <a class='welcome' href='PHP/seller-dashboard.php'>" . htmlspecialchars($_SESSION['seller_username']) . "</a></div>";
                   echo "<a href='PHP/logout.php'><button class='logout-btn'>LOGOUT</button></a>";
               } elseif (isset($_SESSION['username'])) {
-                  // Normal user is logged in
+                  // Normal user 
                   echo "<div class='welcome'>Welcome, " . htmlspecialchars($_SESSION['username']) . "!</div>";
                   echo "<a href='PHP/logout.php'><button class='logout-btn'>LOGOUT</button></a>";
               } else {
@@ -64,14 +64,18 @@
     <div class="mobile-login">
       <?php
       session_start();
-      if (isset($_SESSION['username'])) {
-        // User is logged in
-        echo "<div class='welcome'>Welcome, " . htmlspecialchars($_SESSION['username']) . "!</div>";
-        echo "<a href='PHP/logout.php'><button>LOGOUT</button></a>";
+      if (isset($_SESSION['seller_username'])) {
+          // Seller
+          echo "<div class='welcome'>Welcome, <a class='welcome' href='PHP/seller-dashboard.php'>" . htmlspecialchars($_SESSION['seller_username']) . "</a></div>";
+          echo "<a href='PHP/logout.php'><button class='logout-btn'>LOGOUT</button></a>";
+      } elseif (isset($_SESSION['username'])) {
+          // Normal user 
+          echo "<div class='welcome'>Welcome, " . htmlspecialchars($_SESSION['username']) . "!</div>";
+          echo "<a href='PHP/logout.php'><button class='logout-btn'>LOGOUT</button></a>";
       } else {
-        // User is not logged in
-        echo '<div class="login-btn"><a href="PHP/login.php"><button>LOGIN</button></a></div>';
-        echo '<div class="link-btn"><a href="PHP/signup.php"><button>LINK</button></a></div>';
+          // No user is logged in
+          echo '<div class="login-btn"><a href="PHP/login.php"><button>LOGIN</button></a></div>';
+          echo '<div class="link-btn"><a href="PHP/signup.php"><button>LINK</button></a></div>';
       }
       ?>
     </div>

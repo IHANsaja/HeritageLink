@@ -117,14 +117,14 @@ if (isset($_POST['username'])) {
                 event.preventDefault();
                 sellerTab.classList.add('active');
                 userTab.classList.remove('active');
-                form.setAttribute('action', 'seller-lg.php'); // Set the action for the SELLER
+                form.setAttribute('action', 'seller-lg.php');
             });
 
             userTab.addEventListener('click', (event) => {
                 event.preventDefault();
                 userTab.classList.add('active');
                 sellerTab.classList.remove('active');
-                form.setAttribute('action', 'Lg.php'); // Set the action for the USER
+                form.setAttribute('action', 'Lg.php'); 
             });
         });
     </script>

@@ -7,7 +7,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST['username'];
     $password = $_POST['password'];  
 
-    // Database connection
     $con = new mysqli("localhost", "root", "", "heritagelink");
 
     if ($con->connect_error) {
@@ -24,8 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             // Check password
             if ($password === $data['password']) {
-                // Set session variables
-                $_SESSION['seller_id'] = $data['seller_id']; // Assuming 'seller_id' is a column in your table
+                $_SESSION['seller_id'] = $data['seller_id']; 
                 $_SESSION['username'] = $data['username'];
 
                 header("Location: ../index.php");
@@ -135,14 +133,14 @@ please register here.</p>
                 event.preventDefault();
                 sellerTab.classList.add('active');
                 userTab.classList.remove('active');
-                form.setAttribute('action', 'seller-login.php'); // Set the action for the SELLER
+                form.setAttribute('action', 'seller-login.php'); 
             });
 
             userTab.addEventListener('click', (event) => {
                 event.preventDefault();
                 userTab.classList.add('active');
                 sellerTab.classList.remove('active');
-                form.setAttribute('action', 'login.php'); // Set the action for the USER
+                form.setAttribute('action', 'login.php'); 
             });
         });
 		

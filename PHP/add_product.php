@@ -18,33 +18,31 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $stock = $_POST['stock'];
 
     // Image Upload Handling
-    $target_dir = "../uploads/"; // Ensure the uploads folder exists and is writable
+    $target_dir = "../uploads/"; 
     $target_file = $target_dir . basename($_FILES["product_image"]["name"]);
     $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 
-    // Check if image file is a valid image type
+    // Check image file type
     $check = getimagesize($_FILES["product_image"]["tmp_name"]);
     if ($check === false) {
         die("File is not an image.");
     }
 
-    // Check file size (optional, example: limit to 2MB)
+    // Check file size
     if ($_FILES["product_image"]["size"] > 2000000) {
         die("Sorry, your file is too large.");
     }
 
-    // Allow certain file formats
+    // Allowed file formats
     $allowed_types = ["jpg", "jpeg", "png", "gif"];
     if (!in_array($imageFileType, $allowed_types)) {
         die("Sorry, only JPG, JPEG, PNG, and GIF files are allowed.");
     }
 
-    // Attempt to move the uploaded file to the target directory
     if (!move_uploaded_file($_FILES["product_image"]["tmp_name"], $target_file)) {
         die("Sorry, there was an error uploading your file.");
     }
 
-    // Check if the seller_id exists in the Sellers table
     $check_query = "SELECT * FROM Sellers WHERE seller_id = ?";
     $stmt = $conn->prepare($check_query);
     $stmt->bind_param("i", $seller_id);
@@ -52,7 +50,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $check_result = $stmt->get_result();
 
     if ($check_result->num_rows > 0) {
-        // Check if the product already exists
         $product_check_query = "SELECT * FROM Products WHERE seller_id = ? AND product_name = ?";
         $stmt = $conn->prepare($product_check_query);
         $stmt->bind_param("is", $seller_id, $product_name);

@@ -23,9 +23,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             // Check password 
             if ($password === $data['password']) {
-                // Set session variables
-                $_SESSION['seller_id'] = $data['seller_id']; // Assuming 'seller_id' is a column in your table
-                $_SESSION['seller_username'] = $data['username']; // Set the session variable for the seller
+                $_SESSION['seller_id'] = $data['seller_id'];
+                $_SESSION['seller_username'] = $data['username']; 
 
                 header("Location: seller-dashboard.php");
                 exit();
@@ -134,14 +133,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 event.preventDefault();
                 sellerTab.classList.add('active');
                 userTab.classList.remove('active');
-                form.setAttribute('action', 'seller-login.php'); // Set the action for the SELLER
+                form.setAttribute('action', 'seller-login.php'); 
             });
 
             userTab.addEventListener('click', (event) => {
                 event.preventDefault();
                 userTab.classList.add('active');
                 sellerTab.classList.remove('active');
-                form.setAttribute('action', 'login.php'); // Set the action for the USER
+                form.setAttribute('action', 'login.php');
             });
         });
     </script>

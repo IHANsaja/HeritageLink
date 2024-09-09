@@ -512,3 +512,18 @@ textarea::placeholder {
 .edit-product-form button:hover {
     background-color: #783E3F; 
 }
+
+p.sellerid{
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    color: #fff;
+    background-color: #a15d5f;
+    width: 80%;
+    height: 50px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 25px;
+    margin-top: 25px;
+}

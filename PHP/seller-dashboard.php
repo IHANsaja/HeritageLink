@@ -151,6 +151,9 @@
                     <i class="ri-arrow-right-s-fill"></i>
                 </div>
             </a>
+            <p class="sellerid">
+                <?php echo 'Your Seller ID: '. $seller_id?>
+            </p>
         </div>
         <a href="../html/settings.html" class="settings-link">
             <div class="settings">
@@ -200,7 +203,6 @@
                 <textarea name="description" placeholder="Description"></textarea>
                 <input type="number" name="price" placeholder="Price" required>
                 <input type="number" name="stock" placeholder="Stock" required>
-                <!-- New input for image upload -->
                 <input type="file" name="product_image" accept="image/*" required>
                 <button type="submit" id="submit-btn">Add Product</button>
             </form>

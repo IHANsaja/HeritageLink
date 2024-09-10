@@ -87,7 +87,7 @@
                     <?php if (!empty($results)): ?>
                         <?php foreach ($results as $product): ?>
                             <div class="search-card">
-                                <img src="../assets/sigiriya1.jpg" alt="<?php echo htmlspecialchars($product['product_name']); ?>">
+                                <img src="<?php echo !empty($product['image_path']) ? htmlspecialchars($product['image_path']) : '../assets/sigiriya1.jpg'; ?>" alt="<?php echo htmlspecialchars($product['product_name']); ?>">
                                 <div class="search-info">
                                     <h3><?php echo htmlspecialchars($product['product_name']); ?></h3>
                                     <p><?php echo htmlspecialchars($product['description']); ?></p>

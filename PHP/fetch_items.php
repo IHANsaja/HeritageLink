@@ -21,7 +21,7 @@ if ($result->num_rows > 0) {
         echo '<div class="product-item">';
         $image = !empty($row["image_path"]) ? $row["image_path"] : '../assets/sigiriya1.jpg';
         echo '<img src="' . htmlspecialchars($image) . '" alt="' . htmlspecialchars($row["product_name"]) . '">';
-        echo '<h3>' . htmlspecialchars($row["product_name"]) . '</h3>';
+        echo '<h3 style="color:#5D2E46;">' . htmlspecialchars($row["product_name"]) . '</h3>';
         echo '<p>USD ' . htmlspecialchars($row["price"]) . '</p>';
         echo '<form method="POST" action="purchase_confirmation.php" class="buy-form">';
         echo '<input type="hidden" name="product_id" value="' . htmlspecialchars($row['product_id']) . '">';

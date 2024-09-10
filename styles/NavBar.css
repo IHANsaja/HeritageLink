@@ -173,7 +173,18 @@ a.welcome {
 .mobile-nav-links {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.mobile-nav-links a{
+  text-decoration: none;
+  color: #E8D6CB;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.mobile-nav-links a:hover{
+  background-color: #541E3A;
 }
 
 .mobile-login {

@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="about.css">
   <title>Heritage Link</title>
   <link rel="stylesheet" href="styles/style.css">
+  <link rel="stylesheet" href="styles/NavBar.css">
   <link
   rel="stylesheet"
   href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;800;900&display=swap"
@@ -23,79 +24,81 @@
 
 </head>
 <body>
-  <div class="nav-bar">
-          <img src="assets/logoLarge.jpeg" alt="logo" class="logo">
-          <div class="nav-links">
-              <a href="index.php"><div class="home">HOME</div></a>
-              <a href="PHP/museum.php"><div class="museum">MUSEUM</div></a>
-              <a href="PHP/marketplace.php"><div class="market">MARKET</div></a>
-              <a href="https://en.wikipedia.org/wiki/List_of_World_Heritage_Sites_in_Sri_Lanka" target="_blank"><div class="protect">PROTECT</div></a>
-          </div>
-          <div class="login">
+<div class="nav-bar">
+        <img src="assets/logoLarge.jpeg" alt="logo" class="logo">
+        <div class="brandname">
+            <h2>HerritageLink</h2>
+        </div>
+        <div class="nav-links">
+            <a href="index.php"><div class="home">HOME</div></a>
+            <a href="PHP/museum.php"><div class="museum">MUSEUM</div></a>
+            <a href="PHP/marketplace.php"><div class="market">MARKET</div></a>
+            <a href="https://en.wikipedia.org/wiki/List_of_World_Heritage_Sites_in_Sri_Lanka" target="_blank"><div class="protect">PROTECT</div></a>
+        </div>
+        <div class="login">
             <?php
-              session_start();
-              if (isset($_SESSION['seller_username'])) {
-                  // Seller
-                  echo "<div class='welcome'>Welcome, <a class='welcome' href='PHP/seller-dashboard.php'>" . htmlspecialchars($_SESSION['seller_username']) . "</a></div>";
-                  echo "<a href='PHP/logout.php'><button class='logout-btn'>LOGOUT</button></a>";
-              } elseif (isset($_SESSION['username'])) {
-                  // Normal user 
-                  echo "<div class='welcome'>Welcome, " . htmlspecialchars($_SESSION['username']) . "!</div>";
-                  echo "<a href='PHP/logout.php'><button class='logout-btn'>LOGOUT</button></a>";
-              } else {
-                  // No user is logged in
-                  echo '<div class="login-btn"><a href="PHP/login.php"><button>LOGIN</button></a></div>';
-                  echo '<div class="link-btn"><a href="PHP/signup.php"><button>LINK</button></a></div>';
-              }
-              ?>
-          </div>
-  </div>
-
-<div class="mobile-menu">
-    <div class="close-menu">
-        <i class="ri-close-line"></i>
+            session_start(); 
+            if (isset($_SESSION['seller_username'])) {
+                // Seller 
+                echo "<div class='welcome'>Welcome, <a class='welcome' href='PHP/seller-dashboard.php'>" . htmlspecialchars($_SESSION['seller_username']) . "</a></div>";
+                echo "<a href='PHP/logout.php'><button class='logout-btn'>LOGOUT</button></a>";
+            } elseif (isset($_SESSION['username'])) {
+                // Normal user 
+                echo "<div class='welcome'>Welcome, " . htmlspecialchars($_SESSION['username']) . "!</div>";
+                echo "<a href='PHP/logout.php'><button class='logout-btn'>LOGOUT</button></a>";
+            } else {
+                // No user is logged in
+                echo '<div class="login-btn"><a href="PHP/login.php"><button>LOGIN</button></a></div>';
+                echo '<div class="link-btn"><a href="PHP/signup.php"><button>LINK</button></a></div>';
+            }
+            ?>
+        </div>
+        <div class="menu-toggle">
+            <i class="ri-menu-line"></i>
+        </div>
     </div>
-    <div class="mobile-nav-links">
-      <a href="index.php"><div class="home">HOME</div></a>
-      <a href="PHP/museum.php"><div class="museum">MUSEUM</div></a>
-      <a href="PHP/marketplace.php"><div class="market">MARKET</div></a>
-      <a href="https://en.wikipedia.org/wiki/List_of_World_Heritage_Sites_in_Sri_Lanka" target="_blank"><div class="protect">PROTECT</div></a>
+
+    <div class="mobile-menu">
+        <div class="close-menu">
+            <i class="ri-close-line"></i>
+        </div>
+        <div class="mobile-nav-links">
+            <a href="index.php"><div class="home">HOME</div></a>
+            <a href="PHP/museum.php"><div class="museum">MUSEUM</div></a>
+            <a href="PHP/marketplace.php"><div class="market">MARKET</div></a>
+            <a href="https://en.wikipedia.org/wiki/List_of_World_Heritage_Sites_in_Sri_Lanka" target="_blank"><div class="protect">PROTECT</div></a>
+        </div>
+        <div class="mobile-login">
+            <?php
+            if (isset($_SESSION['seller_username'])) {
+                echo "<div class='welcome'>Welcome, <a class='welcome' href='PHP/seller-dashboard.php'>" . htmlspecialchars($_SESSION['seller_username']) . "</a></div>";
+                echo "<a href='PHP/logout.php'><button class='logout-btn'>LOGOUT</button></a>";
+            } elseif (isset($_SESSION['username'])) {
+                echo "<div class='welcome'>Welcome, " . htmlspecialchars($_SESSION['username']) . "!</div>";
+                echo "<a href='PHP/logout.php'><button class='logout-btn'>LOGOUT</button></a>";
+            } else {
+                echo '<div class="login-btn"><a href="PHP/login.php"><button>LOGIN</button></a></div>';
+                echo '<div class="link-btn"><a href="PHP/signup.php"><button>LINK</button></a></div>';
+            }
+            ?>
+        </div>
     </div>
-    <div class="mobile-login">
-      <?php
-      session_start();
-      if (isset($_SESSION['seller_username'])) {
-          // Seller
-          echo "<div class='welcome'>Welcome, <a class='welcome' href='PHP/seller-dashboard.php'>" . htmlspecialchars($_SESSION['seller_username']) . "</a></div>";
-          echo "<a href='PHP/logout.php'><button class='logout-btn'>LOGOUT</button></a>";
-      } elseif (isset($_SESSION['username'])) {
-          // Normal user 
-          echo "<div class='welcome'>Welcome, " . htmlspecialchars($_SESSION['username']) . "!</div>";
-          echo "<a href='PHP/logout.php'><button class='logout-btn'>LOGOUT</button></a>";
-      } else {
-          // No user is logged in
-          echo '<div class="login-btn"><a href="PHP/login.php"><button>LOGIN</button></a></div>';
-          echo '<div class="link-btn"><a href="PHP/signup.php"><button>LINK</button></a></div>';
-      }
-      ?>
-    </div>
-</div>
 
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const menuToggle = document.querySelector('.menu-toggle');
-        const mobileMenu = document.querySelector('.mobile-menu');
-        const closeMenu = document.querySelector('.close-menu');
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuToggle = document.querySelector('.menu-toggle');
+            const mobileMenu = document.querySelector('.mobile-menu');
+            const closeMenu = document.querySelector('.close-menu');
 
-        menuToggle.addEventListener('click', () => {
-            mobileMenu.classList.add('show');
-        });
+            menuToggle.addEventListener('click', () => {
+                mobileMenu.classList.add('show');
+            });
 
-        closeMenu.addEventListener('click', () => {
-            mobileMenu.classList.remove('show');
-        });
-        });
-</script>
+            closeMenu.addEventListener('click', () => {
+                mobileMenu.classList.remove('show');
+            });
+            });
+    </script>
 <!-- -------------------------------------------container--------------------------------------------------------- -->
 <div class="container">
   <div class="box1">

@@ -56,22 +56,22 @@
             <i class="ri-close-line"></i>
         </div>
         <div class="mobile-nav-links">
-            <div class="home">HOME</div>
-            <div class="museum">MUSEUM</div>
-            <div class="market">MARKET</div>
-            <div class="protect">PROTECT</div>
+            <a href="../index.php"><div class="home">HOME</div></a>
+            <a href="museum.php"><div class="museum">MUSEUM</div></a>
+            <a href="marketplace.php"><div class="market">MARKET</div></a>
+            <a href="https://en.wikipedia.org/wiki/List_of_World_Heritage_Sites_in_Sri_Lanka" target="_blank"><div class="protect">PROTECT</div></a>
         </div>
         <div class="mobile-login">
             <?php
             if (isset($_SESSION['seller_username'])) {
-                echo "<div class='welcome'>Welcome, <a class='welcome' href='PHP/seller-dashboard.php'>" . htmlspecialchars($_SESSION['seller_username']) . "</a></div>";
-                echo "<a href='PHP/logout.php'><button class='logout-btn'>LOGOUT</button></a>";
+                echo "<div class='welcome'>Welcome, <a class='welcome' href='seller-dashboard.php'>" . htmlspecialchars($_SESSION['seller_username']) . "</a></div>";
+                echo "<a href='logout.php'><button class='logout-btn'>LOGOUT</button></a>";
             } elseif (isset($_SESSION['username'])) {
                 echo "<div class='welcome'>Welcome, " . htmlspecialchars($_SESSION['username']) . "!</div>";
-                echo "<a href='PHP/logout.php'><button class='logout-btn'>LOGOUT</button></a>";
+                echo "<a href='logout.php'><button class='logout-btn'>LOGOUT</button></a>";
             } else {
-                echo '<div class="login-btn"><a href="PHP/login.php"><button>LOGIN</button></a></div>';
-                echo '<div class="link-btn"><a href="PHP/signup.php"><button>LINK</button></a></div>';
+                echo '<div class="login-btn"><a href="login.php"><button>LOGIN</button></a></div>';
+                echo '<div class="link-btn"><a href="signup.php"><button>LINK</button></a></div>';
             }
             ?>
         </div>

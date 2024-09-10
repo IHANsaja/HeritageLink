@@ -15,15 +15,13 @@ if (isset($_GET['username'])) {
                 die("Connection failed: " . $con->connect_error);
             }
 
-            $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-
             $stmt = $con->prepare('UPDATE customers SET password = ? WHERE username = ?');
 
             if ($stmt === false) {
                 die("Failed to prepare the SQL statement: " . $con->error);
             }
 
-            $stmt->bind_param('ss', $hashed_password, $username);
+            $stmt->bind_param('ss', $password, $username);
 
             if ($stmt->execute()) {
                 if ($stmt->affected_rows > 0) {

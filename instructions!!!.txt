@@ -1,0 +1,4 @@
+1. start the server (XAMPP, WAMPP,...)
+2. create a database named heritagelink
+3. import heritagelink.sql file
+4. go to " localhost/heritagelink "
